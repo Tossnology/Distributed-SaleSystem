@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>货品信息</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        .middle {
+        float: none;
+        display: inline-block;
+        vertical-align: middle;
+        }                    
+
+    </style>
+</head>
+
+<body>
+    <!-- 添加货品模态框 -->
+    <div class="modal fade" id="cargoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">货品编辑</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <caption>编号</caption>
+                            <input type="text" readonly="readonly" class="form-control input-sm" id="cargo-id" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <caption>名称</caption>
+                            <input type="text" class="form-control input-sm" id="cargo-name">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>种类</caption>
+                            <select class="form-control input-sm" id="cargo-type">
+                                    <option value="五金类">五金类</option>
+                                    <option value="生活用品类">生活用品类</option>
+                                    <option value="家具类">家具类</option>
+                                    <option value="图书类">图书类</option>
+                                    <option value="体育健身类">体育健身类</option>
+                                    <option value="摄影器材类">摄影器材类</option>
+                                    <option value="服装内衣类">服装内衣类</option>
+                                    <option value="食品类">食品类</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <caption>规格</caption>
+                            <input type="text" class="form-control input-sm" id="cargo-format">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <caption>进货价格</caption>
+                            <input type="text" readonly="readonly" class="form-control input-sm" id="purchase-price">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>零售价格</caption>
+                            <input type="text" class="form-control input-sm" id="retail-price">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>批发价格</caption>
+                            <input type="text" class="form-control input-sm" id="wholesale-price">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框结束 -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4">
+                    <caption>
+                        当前位置>货品浏览
+                    </caption>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                        <button type="button" class="btn btn-primary btn-sm" id="add-btn">添加货品</button>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>货品名称 </h6>
+                            <input id="search-cargo-name" type="text" class="form-control input-sm">
+                        </div>
+                        <div class="col-md-4">
+                            <h6>货品编号</h6>
+                            <input id="search-cargo-id" type="text" class="form-control input-sm">
+                        </div>
+                        <div class="col-md-2">
+                            <h6>货品种类</h6>
+                            <select class="form-control input-sm" id="search-cargo-type">
+                                <option value="任意">任意</option>
+                                <option value="五金类">五金类</option>
+                                <option value="生活用品类">生活用品类</option>
+                                <option value="家具类">家具类</option>
+                                <option value="图书类">图书类</option>
+                                <option value="体育健身类">体育健身类</option>
+                                <option value="摄影器材类">摄影器材类</option>
+                                <option value="服装内衣类">服装内衣类</option>
+                                <option value="食品类">食品类</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-sm btn-default" type="button" id="search-btn">查询</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div align="center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>种类</th>
+                            <th>进货价格</th>
+                            <th>零售价格</th>
+                            <th>批发价格</th>
+                            <th>规格</th>
+                            <th>更新时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id='cargo-tbody'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/cargo.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/shopmanager_cargoinfo.js"></script>

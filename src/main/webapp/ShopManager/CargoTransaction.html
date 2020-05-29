@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 店长端货品异动页面 -->
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加异动模态框 -->
+    <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">添加异动</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>货品名称</caption>
+                            <input type="text" class="form-control" id="cargoName">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>货品编码</caption>
+                            <input type="text" class="form-control" id="cargoId">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>数量</caption>
+                            <input type="text" class="form-control" id="cargoNum">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>异动种类</caption>
+                            <select class="form-control" id="transactionType">
+                                <option>退货</option>
+                                <option>自用</option>
+                                <option>损坏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>负责人</caption>
+                            <input type="text" class="form-control" id="cargoManager">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <caption>备注</caption>
+                            <input style="min-width: 100%" class="form-control" id="transactionComment">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="content">
+                <div class="row">
+                        <div class="col-md-4">
+                            <caption>
+                                当前位置>货品异动
+                            </caption>
+                        </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-5">
+                            <div class="input-group form-inline">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">查询</button>
+                                </span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm form-inline"
+                        data-toggle="modal" data-target="#transactionModal">添加异动</button>
+                    </div>
+                    <hr>
+            <div align="center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>种类</th>
+                            <th>价格</th>
+                            <th>数量</th>
+                            <th>异动种类</th>
+                            <th>异动时间</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>

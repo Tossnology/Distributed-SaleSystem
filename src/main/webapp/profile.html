@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        .middle {
+            float: none;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加货品模态框 -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">个人信息编辑</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="profile-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <caption>编号</caption>
+                                <input type="text" readonly="readonly" class="form-control input-sm" id="modal-id" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <caption>姓名</caption>
+                                <input type="text" class="form-control" id="modal-name">
+                            </div>
+                            <div class="col-md-6">
+                                <caption>性别</caption>
+                                <select class="form-control" id="modal-gender">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <caption>联系电话</caption>
+                                <input type="text" class="form-control" id="modal-phone">
+                            </div>
+                            <div class="col-md-6">
+                                <caption>电子邮箱</caption>
+                                <input type="text" class="form-control" id="modal-email">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框结束 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <caption>
+                    当前位置>个人信息
+                </caption>
+            </div>
+        </div>
+
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="#profile" data-toggle="tab">
+                    个人信息
+                </a>
+            </li>
+            <li><a href="#secure" data-toggle="tab">
+                    安全设置
+                </a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="profile">
+              <div class="row">
+                <div class="col-md-2"  style="display: table;">
+                    <button type="button" class="btn" id="edit-btn">编辑个人信息</button>
+                </div>
+              </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h1  id="name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        <h4 id="gender"></h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 id="id"></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 id="position"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <h3 id="rep"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <h3 id="phone"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <h3 id="email"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="secure">
+                <div class='row'>
+                    <form id="reset-pwd">
+                    <div class="col-md-4 col-md-offset-4">
+                            <div class="form-group">
+                                <label for="new-pwd">新密码</label>
+                                <input type="password" class="form-control" id="new-pwd" placeholder="请输入新密码">
+                            </div>
+                            <div class="form-group">
+                                <label for="check-pwd">再次输入密码</label>
+                                <input type="password" class="form-control" id="check-pwd" placeholder="请输入新密码">
+                            </div>
+                            <button type="button" class="btn btn-primary" id="modify-btn">修改</button>
+                    </div>
+                    </form>
+                </div>"
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="js/saleSys/model/staff.js"></script>
+<script type="text/javascript" src="js/saleSys/model/shopmanager.js"></script>
+<script type="text/javascript" src="js/saleSys/model/generalmanager.js"></script>
+<script type="text/javascript" src="js/saleSys/profile.js"></script>

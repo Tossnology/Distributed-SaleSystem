@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.software.dao.WarehourseDetailMapper">
+  <resultMap id="BaseResultMap" type="com.software.domain.WarehourseDetail">
+    <id column="itemID" jdbcType="INTEGER" property="itemid" />
+    <result column="itemNum" jdbcType="INTEGER" property="itemnum" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    itemID, itemNum, time
+  </sql>
+   <update id="createNewTable" parameterType="String">  
+        CREATE TABLE ${tablename} (
+		  `itemID` int(11) NOT NULL COMMENT '物品ID',
+		  `itemNum` int(11) NOT NULL COMMENT '物品数量',
+		  `time` varchar(45) NOT NULL,
+		  PRIMARY KEY (`itemID`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  </update>
+   <delete id="dropTable" parameterType="String">
+   		drop table ${tablename}
+   </delete>
+  <select id="selectByPrimaryKey" parameterType="com.software.domain.WarehourseDetail" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablename}
+    where itemID = #{itemid,jdbcType=INTEGER}
+  </select>
+  <select id="select" parameterType="com.software.domain.WarehourseDetail" resultMap="BaseResultMap">
+		select *
+		from ${tablename}
+		<where>
+			<if test="itemid!=null and itemid!=''">
+				and itemID = #{itemid}
+			</if>
+		</where>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="com.software.domain.WarehourseDetail">
+    delete from ${tablename}
+    where itemID = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.software.domain.WarehourseDetail">
+    insert into ${tablename} (itemID, itemNum, time
+      )
+    values (#{itemid,jdbcType=INTEGER}, #{itemnum,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.software.domain.WarehourseDetail">
+    insert into ${tablename}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        itemID,
+      </if>
+      <if test="itemnum != null">
+        itemNum,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemnum != null">
+        #{itemnum,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.WarehourseDetail">
+    update ${tablename}
+    <set>
+      <if test="itemnum != null and itemnum!=''">
+        itemNum = #{itemnum,jdbcType=INTEGER},
+      </if>
+      <if test="time != null and time!=''">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemID = #{itemid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.software.domain.WarehourseDetail">
+    update ${tablename}
+    set itemNum = #{itemnum,jdbcType=INTEGER},
+      time = #{time,jdbcType=VARCHAR}
+    where itemID = #{itemid,jdbcType=INTEGER}
+  </update>
+</mapper>

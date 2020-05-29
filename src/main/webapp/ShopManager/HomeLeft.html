@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>  
+</head>
+
+<body>
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation">
+            <a href="#" data-toggle="collapse" data-target="#baseManagement">仓储基本信息管理</a>
+            <ul id="baseManagement" class="collapse">
+                <li role="presentation"><a class="collapse-item" href="CargoInfo.html" target="main">货品信息</a></li>
+            </ul>
+        </li>
+        <li role="presentation">
+            <a href="#" data-toggle="collapse" data-target="#peopleManagement">人员基本信息管理</a>
+            <ul id="peopleManagement" class="collapse">
+                <li role="presentation"><a class="collapse-item" href="ClientInfo.html" target="main">客户信息</a></li>
+                <li role="presentation"><a class="collapse-item" href="MemberInfo.html" target="main">会员信息</a></li>
+                <li role="presentation"><a class="collapse-item" href="ClerkInfo.html" target="main">员工信息</a></li>
+            </ul>
+        </li>
+        <li role="presentation">
+            <a href="#" data-toggle="collapse" data-target="#stockManagement">库存管理</a>
+            <ul id="stockManagement" class="collapse">
+                <li role="presentation"><a class="collapse-item" href="InventoryInfo.html" target="main">库存统计</a></li>
+                <li role="presentation"><a class="collapse-item" href="CargoStockInfo.html" target="main">进货管理</a></li>
+                <li role="presentation"><a class="collapse-item" href="CargoDeliveryInfo.html" target="main">出货管理</a>
+                </li>
+            </ul>
+        </li>
+        <li role="presentation">
+            <a href="#" data-toggle="collapse" data-target="#orderManagement">销售管理</a>
+            <ul id="orderManagement" class="collapse">
+                <li role="presentation"><a class="collapse-item" href="OrderInfo.html" target="main">订单管理</a></li>
+                <li role="presentation"><a class="collapse-item" href="Performance.html" target="main">销售业绩</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</body>
+
+</html>

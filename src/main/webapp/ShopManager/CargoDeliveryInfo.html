@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 店长货物出库页面 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加出货模态框，一次添加多批货物 -->
+    <div class="modal fade" id="stockDeliverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">添加出货</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modal-form">
+                    <div id="type"></div>
+                    <div class="row" >
+                        <div class="col-md-12">
+                                <caption>批次编号</caption>
+                                <input readonly="readonly" type="text" class="form-control input-sm" id="order-id">
+                        </div>
+                    </div>
+                        <div class="row">
+                                <div class="col-md-3">
+                                    <caption>负责人</caption>
+                                    <input readonly="readonly" type="text" class="form-control input-sm" id="order-principal">
+                                </div>
+                                <div class="col-md-3">
+                                        <caption>存储位置</caption>
+                                        <select readonly="readonly" class="form-control  input-sm" id="order-stock-position">
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <caption>类型</caption>
+                                            <select class="form-control input-sm" id="order-type">
+                                                <option value="2">转仓</option>
+                                            </select>
+                                        </div>
+                                    <div class="col-md-3">
+                                            <caption>目的地</caption>
+                                            <select class="form-control  input-sm" id="order-target-position">
+                                                   
+                                            </select>
+                                        </div>
+                            </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>货品名称</caption>
+                            <input type="text" class="form-control" id="cargo-name">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>货品编码</caption>
+                            <input type="text" class="form-control" id="cargo-id">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <caption>货品数量</caption>
+                            <input type="text" class="form-control" id="cargo-num">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>进货价</caption>
+                            <input readonly="readonly" type="text" class="form-control input-sm" id="cargo-purchase-price">
+                        </div>
+                        <div class=" col-md-3 col-md-offset-3">
+                            <caption>总价格</caption>
+                            <input type="text" class="form-control" id="cargo-total-price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-10 col-md-2">
+                            <button type="button" class=" add-cargo-btn btn btn-sm btn-primary" id="add-cargo-btn">添加</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>货品名称</th>
+                                    <th>货品编码</th>
+                                    <th>货品数量</th>
+                                    <th>单价</th>
+                                    <th>总价</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="temp-worder-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="row">
+                            <div class="col-md-4">
+                                <h4>出货总价: </h4>
+                            </div>
+                        </div>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-4">
+                    <caption>
+                        当前位置>出货管理
+                    </caption>
+                </div>
+
+            </div>
+            <div class="row">
+                    <div class="col-md-1">
+                            <button type="button" class="btn btn-primary btn-sm form-inline" id="add-btn">添加出货</button>
+                        </div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h6>出货批次编号 </h6>
+                                    <input type="text" class="form-control input-sm" id="search-order-id">
+                                </div>
+                                <div class="col-md-2">
+                                    <h6>货品编号</h6>
+                                    <input type="text" class="form-control input-sm" id="search-cargo-id">
+                                </div>
+                                <div class="col-md-2">
+                                    <h6>目的地</h6>
+                                    <select class="form-control input-sm" id="search-order-target">
+                                        <option value="">任意</option>
+                                        <option>总仓库</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <h6>负责人</h6>
+                                    <input type="text" class="form-control input-sm" id="search-principal-id">
+                                </div>
+                                <div class="col-md-2">
+                                        <h6>类型</h6>
+                                        <select class="form-control input-sm" id="search-type">
+                                                <option value="2">转仓</option>
+                                            </select>
+                                    </div>
+                                <div class="col-md-2">
+                                        <h6>状态</h6>
+                                        <select class="form-control input-sm" id="search-status">
+                                            <option value="">任意</option>
+                                                <option value="1">未申请</option>
+                                                <option value="2">审核中</option>
+                                                <option value="4">已通过</option>
+                                            </select>
+                                    </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-sm btn-default" type="button" id="search-btn">查询</button>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <hr>
+            <div align="center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>批次编号</th>
+                            <th>总价</th>
+                            <th>存储位置</th>
+                            <th>目的地</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>负责人</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="worder-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/warehourse.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/warehourseorder.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/cargo.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/shopmanager_cargodeliveryinfo.js"></script>

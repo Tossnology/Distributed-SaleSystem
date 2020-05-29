@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 店长端会员管理 V4.0 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>会员信息</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加用户模态框 -->
+    <div class="modal fade" id="clientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">注册会员</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="member-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>客户编号</caption>
+                            <input type="text" class="form-control" id="client-id">
+                        </div>
+                        <div class="col-md-4">
+                            <caption>姓名</caption>
+                            <input type="text" class="form-control" id="client-name">
+                        </div>
+                        <div class="col-md-2">
+                            <caption>性别</caption>
+                            <select class="form-control" id="client-gender">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>联系电话</caption>
+                            <input type="text" class="form-control" id="client-phone">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>电子邮箱</caption>
+                            <input type="text" class="form-control" id="client-email">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <caption>会员等级</caption>
+                            <select class="form-control input-sm" id="member-rank">
+
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            <caption>设置积分</caption>
+                            <input type="text" class="form-control" id="client-point">
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ruleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">积分规则</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <caption>会员等级</caption>
+                            <select class="form-control input-sm" id="set-member-rank">
+
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <caption>积分兑换系数(100积分兑换金额数)</caption>
+                            <input type="text" class="form-control" id="point-price">
+                        </div>
+                        <div class="col-md-5">
+                            <caption>金额兑换系数(100元兑换积分数)</caption>
+                            <input type="text" class="form-control" id="price-point">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="rule-save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <caption>
+                    当前位置>会员信息
+                </caption>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-sm form-inline" id="add-btn">
+                    注册会员
+                </button>
+                <button type="button" class="btn btn-primary btn-sm form-inline" id="set-rule-btn"
+                    data-target="#ruleModal" data-toggle="modal">
+                    设定积分规则
+                </button>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6>姓名 </h6>
+                        <input type="text" class="form-control input-sm" id="search-client-name">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>编号</h6>
+                        <input type="text" class="form-control input-sm" id="search-client-id">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>手机号</h6>
+                        <input type="text" class="form-control input-sm" id="search-phone">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>电子邮箱</h6>
+                        <input type="text" class="form-control input-sm" id="search-email">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>类型</h6>
+                        <select class="form-control input-sm" id="search-type">
+                            <option value="">任意</option>
+                            <option value="零售">零售</option>
+                            <option value="批发">批发</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm btn-default" type="button" id="search-btn">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div align="center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>等级</th>
+                        <th>积分</th>
+                        <th>手机号</th>
+                        <th>电子邮件</th>
+                        <th>类型</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="member-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/client.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/shopmanager_memberinfo.js"></script>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 店长端业绩管理 V4.0 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>业绩信息</title>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- <script src="../js/jquery-1.9.1.min.js"></script> -->
+    <link href="../css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js"></script>
+    <!--js文件中-->
+    <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <caption>
+                    当前位置>业绩信息
+                </caption>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6>姓名 </h6>
+                        <input type="text" class="form-control input-sm" id="search-staff-name">
+                    </div>
+                    <div class="col-md-2">
+                        <h6>编号</h6>
+                        <input type="text" class="form-control input-sm" id="search-staff-id">
+                    </div>
+                    <div class="col-md-3" id="start-date">
+                        <h6>起始时间</h6>
+                        <input type="text" class="form-control" id="search-start-date">
+                    </div>
+                    <div class="col-md-3" id="end-date">
+                        <h6>结束时间</h6>
+                        <input type="text" class="form-control" id="search-end-date">
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <button class="btn btn-sm btn-default" type="button" id="search-btn">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div align="center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>职位</th>
+                        <th>所属仓库</th>
+                        <th>销售订单数</th>
+                        <th>客户数</th>
+                        <th>销售金额</th>
+                        <th>业绩</th>
+                        <th>起始时间</th>
+                        <th>结束时间</th>
+                    </tr>
+                </thead>
+                <tbody id="per-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    
+</script>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/performance.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/shopmanager_performance.js"></script>

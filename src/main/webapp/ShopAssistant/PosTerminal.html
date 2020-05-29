@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">整单折扣</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>折扣系数(0-10)</caption>
+                            <input type="text" class="form-control" id="discount-ratio">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>折后价</caption>
+                            <input type="text" readonly="readonly" class="form-control" id="discount-price">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="discount-save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="span6">
+                                <h3>货品编号</h3>
+                            </div>
+                            <div class="span6">
+                                <input id="cargo-id" type="text" class="input-md form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span6">
+                                <h3>货品名称</h3>
+                            </div>
+                            <div class="span6">
+                                <input id="cargo-name" type="text" class="input-md form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span6">
+                                <h3>货品价格</h3>
+                            </div>
+                            <div class="span6">
+                                <input id="cargo-retail-price" class="input-md form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="span6">
+                                <h3>货品数量</h3>
+                            </div>
+                            <div class="span6">
+                                <input id="cargo-num" class="input-md form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button id="add-btn" class="btn btn-md btn-primary">添加</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3>客户编号</h3>
+                                <input id="client-id" class="form-control input-md">
+                            </div>
+                            <div class="col-md-3">
+                                <h3>客户名称</h3>
+                                <input id="client-name" class="form-control input-md">
+                            </div>
+                            <div class="col-md-3">
+                                <h3>会员积分</h3>
+                                <input id="client-score" class="form-control input-md">
+                            </div>
+                            <div class="col-md-3">
+                                <h3>预存款</h3>
+                                <input id="client-deposit" class="form-control input-md">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="height:250px; overflow:scroll;">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>货品名称</th>
+                                                <th>货品编码</th>
+                                                <th>数量</th>
+                                                <th>单价</th>
+                                                <th>总价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="temp-cargo-list">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>实收</h3>
+                        <input id="actual-receive" class="form-control input-lg">
+                    </div>
+                    <div class="col-md-6">
+                        <h3>找零</h3>
+                        <input id="change" class="form-control input-lg">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>总价</h3>
+                        <input id="total-price" class="form-control input-lg">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6>&nbsp;</h6>
+                                <form class="form-inline" role="form">
+                                    <div class="form-group">
+                                        <label for="inputfile">积分支付</label>
+                                        <input id="client-score-pay" class="form-control input-sm">
+                                    </div>
+                                    <div class="form-group">
+                                        <label id="client-socre-convert"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputfile">预存款支付</label>
+                                        <input id="client-deposit-pay" class="form-control input-sm">
+                                    </div>
+                                </form>
+                                
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="own">赊账
+                                    </label>
+                                </div>
+                                <button id="discount-btn" class="btn btn-sm btn-primary">整单折扣</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button id="submit-btn" class="btn btn-lg btn-primary">结清</button>
+                        <button id="clear-btn" class="btn btn-lg btn-primary">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/client.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/cargo.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/order.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/assistant_pos.js"></script>
+
+</html>

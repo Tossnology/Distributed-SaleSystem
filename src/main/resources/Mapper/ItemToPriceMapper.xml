@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.software.dao.ItemToPriceMapper">
+  <resultMap id="BaseResultMap" type="com.software.domain.ItemToPrice">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="retailPrice" jdbcType="REAL" property="retailprice" />
+    <result column="wholesalePrice" jdbcType="REAL" property="wholesaleprice" />
+    <result column="purchasePrice" jdbcType="REAL" property="purchaseprice" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, name, retailPrice, wholesalePrice, purchasePrice, time, label
+  </sql>
+  <update id="createNewTable" parameterType="String">  
+        CREATE TABLE ${tablename} (
+		  `ID` int(11) NOT NULL,
+		  `name` varchar(45) NOT NULL,
+		  `retailPrice` float DEFAULT NULL,
+		  `wholesalePrice` float DEFAULT NULL,
+		  `purchasePrice` float DEFAULT NULL,
+		  `time` varchar(45) DEFAULT NULL,
+		  `label` varchar(45) DEFAULT NULL,
+		  PRIMARY KEY (`ID`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品大价格的映射';
+  </update> 
+  <delete id="dropTable" parameterType="String">
+   		drop table ${tablename}
+  </delete>
+  
+  <select id="selectByPrimaryKey" parameterType="com.software.domain.ItemToPrice" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablename}
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="select" parameterType="com.software.domain.ItemToPrice" resultMap="BaseResultMap">
+		select *
+		from ${tablename}
+		<where>
+			<if test="id!=null and id!=''">
+				and ID = #{id}
+			</if>
+			<if test="name!=null and name!=''">
+				and name = #{name}
+			</if>
+			<if test="label!=null and label!=''">
+				and label = #{label}
+			</if>
+		</where>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="com.software.domain.ItemToPrice">
+    delete from ${tablename}
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <insert id="insert" parameterType="com.software.domain.ItemToPrice">
+    insert into ${tablename} (ID, name, retailPrice, 
+      wholesalePrice, purchasePrice, time, 
+      label)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{retailprice,jdbcType=REAL}, 
+      #{wholesaleprice,jdbcType=REAL}, #{purchaseprice,jdbcType=REAL}, #{time,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.software.domain.ItemToPrice">
+    insert into ${tablename}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="retailprice != null">
+        retailPrice,
+      </if>
+      <if test="wholesaleprice != null">
+        wholesalePrice,
+      </if>
+      <if test="purchaseprice != null">
+        purchasePrice,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="retailprice != null">
+        #{retailprice,jdbcType=REAL},
+      </if>
+      <if test="wholesaleprice != null">
+        #{wholesaleprice,jdbcType=REAL},
+      </if>
+      <if test="purchaseprice != null">
+        #{purchaseprice,jdbcType=REAL},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.ItemToPrice">
+    update ${tablename}
+    <set>
+      <if test="name != null and name != ''">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="retailprice != null and retailprice != ''">
+        retailPrice = #{retailprice,jdbcType=REAL},
+      </if>
+      <if test="wholesaleprice != null and wholesaleprice != ''">
+        wholesalePrice = #{wholesaleprice,jdbcType=REAL},
+      </if>
+      <if test="purchaseprice != null and purchaseprice!=''">
+        purchasePrice = #{purchaseprice,jdbcType=REAL},
+      </if>
+      <if test="time != null and time != ''">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label !=''">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.software.domain.ItemToPrice">
+    update ${tablename}
+    set name = #{name,jdbcType=VARCHAR},
+      retailPrice = #{retailprice,jdbcType=REAL},
+      wholesalePrice = #{wholesaleprice,jdbcType=REAL},
+      purchasePrice = #{purchaseprice,jdbcType=REAL},
+      time = #{time,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

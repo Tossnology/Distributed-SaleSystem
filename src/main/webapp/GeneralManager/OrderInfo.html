@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>客户信息</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <!-- <link rel="stylesheet" href="css/PresentAnounce.css"> -->
+    
+    <style>
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 创建订单模态框，一次添加多批货品 -->
+    <div class="modal fade" id="orderModifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">订单编辑</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="order-form">
+                    <div id="status"></div>
+                    <div class="row">
+                         <div class="col-md-12">
+                        <caption>订单编号</caption>
+                        <input type="text" class="form-control" readonly="readonly" id="order-id">
+                    </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-md-2">
+                            <caption>客户名称</caption>
+                            <input type="text" class="form-control input-sm" id="client-name">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>客户编号</caption>
+                            <input type="text" class="form-control" id="client-id">
+                        </div>
+                        <div class="col-md-2">
+                            <caption>订单类型</caption>
+                            <select class="form-control input-sm" readonly="readonly" id="order-type">
+                                <option value="1">零售</option>
+                                <option value="2">批发</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <caption>销售地点</caption>
+                            <select class="form-control input-sm" readonly="readonly" id="order-postion">
+                                    <option>1号仓</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <caption>负责人</caption>
+                            <input type="text" class="form-control" id="principal-name">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <caption>货品名称</caption>
+                            <input type="text" class="form-control" id="cargo-name">
+                        </div>
+                        <div class="col-md-6">
+                            <caption>货品编码</caption>
+                            <input type="text" class="form-control" id="cargo-id">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <caption>单价</caption>
+                            <input type="text" readonly="readonly" class="form-control" id="cargo-perprice">
+                        </div>
+                        <div class="col-md-3">
+                            <caption>货品数量</caption>
+                            <input type="text" class="form-control" id="cargo-num">
+                        </div>
+                        <div class="col-md-6">
+                                <caption>总价格</caption>
+                                <input type="text" class="form-control" id="cargo-total-price">
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-10">
+                            <button type="button" class="temp-add-btn btn btn-sm btn-primary" id="temp-add-btn">添加</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>货品名称</th>
+                                    <th>货品编码</th>
+                                    <th>货品数量</th>
+                                    <th>单价</th>
+                                    <th>总价</th>
+                                </tr>
+                            </thead>
+                            <tbody id="temp-cargo-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row note">
+                        <div class="col-md-12 return-note">
+                                <caption>退货备注</caption>
+                                <textarea id="order-note" class="form-control" rows="3" placeholder="退货备注"></textarea>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="save-btn btn btn-primary" id="save-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框结束 -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <caption>
+                    当前位置>订单管理
+                </caption>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6>订单编号 </h6>
+                        <input type="text" class="form-control input-sm" id="search-order-id">
+                    </div>
+                    <div class="col-md-1">
+                        <h6>客户编号</h6>
+                        <input type="text" class="form-control input-sm" id="search-client-id">
+                    </div>
+                    <div class="col-md-1">
+                        <h6>负责人编号</h6>
+                        <input type="text" class="form-control input-sm" id="search-principal-id">
+                    </div>
+                    <div class="col-md-1">
+                        <h6>订单种类</h6>
+                        <select class="form-control input-sm" id="search-cargo-type">
+                            <option value="">任意</option>
+                            <option value="1">零售</option>
+                            <option value="2">批发</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <h6>订单状态</h6>
+                        <select class="form-control input-sm" id="search-check-status">
+                            <option value="任意">任意</option v>
+                            <option value="审核中">审核中</option>
+                            <option value="已审核">已审核</option>
+                            <option value="已退货">已退货</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <h6>付款状态</h6>
+                        <select class="form-control input-sm" id="search-pay">
+                            <option value="任意">任意</option>
+                            <option value="未付款">未付款</option>
+                            <option value="已付款">已付款</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <h6>所属仓库</h6>
+                        <select class="form-control input-sm" id="search-rep">
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-sm btn-default" type="button" id="search-btn">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+            <form class="form-group form-inline">
+            <label for="sale-amount">销售金额</label>
+            <label id="sale-amount"></label>
+        </form>
+        <form class="form-group form-inline">
+             <label for="profit-amount">盈利金额</label>
+            <label id="profit-amount"></label>
+        </form>
+        <hr>
+        <div class="tab-pane fade in active" id="unchecked">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>类型</th>
+                            <th>客户</th>
+                            <th>总价</th>
+                            <th>状态</th>
+                            <th>付款</th>
+                            <th>毛利润</th>
+                            <th>负责人</th>
+                            <th>地点</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-tbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/saleSys/cookie.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/order.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/client.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/cargo.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/staff.js"></script>
+<script type="text/javascript" src="../js/saleSys/model/warehourse.js"></script>
+<script type="text/javascript" src="../js/saleSys/view/generalmanager_orderinfo.js"></script>
