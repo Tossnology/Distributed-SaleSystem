@@ -150,11 +150,15 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 		// 用于初始化商品数量信息表，获取源和目的表名
 		String sourceTableName = null;
 		String targetTableName;
+		int sourceWarehourseId = 0;
+		int targetWarehourseId = 0;
 
 		if (!order.getType().equals("1")) {
 			sourceTableName = getWarehourseDetailTable(resultCommon.getSourceid());
+			sourceWarehourseId = resultCommon.getSourceid();
 		}
 		targetTableName = getWarehourseDetailTable(resultCommon.getTargetid());
+		targetWarehourseId = resultCommon.getTargetid();
 		
 		// 用于保存变化后商品数量信息
 		List<WarehourseDetail> sourceItemList = new ArrayList<>();
@@ -173,6 +177,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 			if (sourceTableName!=null) 
 			{
 				exampleDetail.setTablename(sourceTableName);
+				exampleDetail.setWarehourseid(sourceWarehourseId);
 				exampleDetail.setItemid(warehourseOrderItem.getItemid());
 				
 				sourceDetail = detailService.selectByPrimaryKey(exampleDetail);
@@ -189,16 +194,19 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 				}
 				// 源仓库，减
 				sourceDetail.setTablename(sourceTableName);
+				sourceDetail.setWarehourseid(sourceWarehourseId);
 				sourceDetail.setItemnum(sourceDetail.getItemnum()-warehourseOrderItem.getItemnum());
 				sourceDetail.setTime(date);  // 更新时间
 				sourceItemList.add(sourceDetail);
 			}
 			// 目的仓库加
 			exampleDetail.setTablename(targetTableName);
+			exampleDetail.setWarehourseid(targetWarehourseId);
 			exampleDetail.setItemid(warehourseOrderItem.getItemid());
 			targetDetail = detailService.selectByPrimaryKey(exampleDetail);
 		
 			targetDetail.setTablename(targetTableName);
+			targetDetail.setWarehourseid(targetWarehourseId);
 			targetDetail.setItemnum(targetDetail.getItemnum()+warehourseOrderItem.getItemnum());
 			targetDetail.setTime(date);
 			targetUpdateItemList.add(targetDetail);
@@ -236,7 +244,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 		}
 		else
 		{
-			return "sub_warehourse_detail_"+String.format("%04d", hourseid);
+			return "sub_warehourse_detail";
 		}
 		
 	}
@@ -250,6 +258,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 		// 初始化总仓库与子仓库进货价信息
 		SubBranchDetailMap generalMap = new SubBranchDetailMap();
 		generalMap.setItemtable("base_warehourse_itemtoprice");
+		generalMap.setWarehourseid(-1);
 		SubBranchDetailMap exampleMap = new SubBranchDetailMap();
 		exampleMap.setLabel("valid");
 		List<SubBranchDetailMap> mapList = mapService.select(exampleMap);
@@ -260,6 +269,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 			for (WarehourseOrderItem warehourseOrderItem : itemList) 
 			{
 				price.setTablename(subBranchDetailMap.getItemtable());
+				price.setWarehourseid(subBranchDetailMap.getWarehourseid());
 				price.setItemid(warehourseOrderItem.getItemid());
 				price.setName(warehourseOrderItem.getItemname());
 				price.setPurchaseprice(warehourseOrderItem.getPerprice());

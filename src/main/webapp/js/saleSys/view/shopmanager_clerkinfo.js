@@ -34,7 +34,7 @@ $('#add-btn').click(function() {
 
 //编辑
 $(document).on('click', '#edit-btn', function() {
-	console.log("lk", tempClerkMap);
+    cleanModal();
     $('#clerkModal').modal('show'); //show modal
     $('#modal-title').innerHTML = "店员编辑";
     var clerk = tempClerkMap.get($(this).val());
@@ -64,6 +64,7 @@ $('#save-btn').click(function() {
     } else {
         updateStaff(clerk);
     }
+    $('#clerkModal').modal('hide');
     refreshClerkList();
 });
 

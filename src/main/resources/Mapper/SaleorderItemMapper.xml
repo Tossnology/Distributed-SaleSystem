@@ -33,12 +33,12 @@
   <select id="selectByPrimaryKey" parameterType="com.software.domain.SaleorderItem" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sub_saleorder_common
+    from sub_saleorder_item
     where viceID = #{viceid,jdbcType=INTEGER}
   </select>
     <select id="select" parameterType="com.software.domain.SaleorderItem" resultMap="BaseResultMap">
 		select *
-		from sub_saleorder_common
+		from sub_saleorder_item
 		<where>
 			<if test="id!=null and id!=''">
 				and ID = #{id}
@@ -55,15 +55,15 @@
 		</where>
 	</select>
   <delete id="deleteByPrimaryKey" parameterType="com.software.domain.SaleorderItem">
-    delete from sub_saleorder_common
+    delete from sub_saleorder_item
     where viceID = #{viceid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByID" parameterType="com.software.domain.SaleorderItem">
-    delete from sub_saleorder_common
+    delete from sub_saleorder_item
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.software.domain.SaleorderItem">
-    insert into sub_saleorder_common (viceID, ID, itemID,
+    insert into sub_saleorder_item (viceID, ID, itemID,
       itemName, itemNum, perPrice, 
       sumPrice, priceType)
     values (#{viceid,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, 
@@ -71,7 +71,7 @@
       #{sumprice,jdbcType=REAL}, #{pricetype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.SaleorderItem">
-    insert into sub_saleorder_common
+    insert into sub_saleorder_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="viceid != null">
         viceID,
@@ -126,7 +126,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.SaleorderItem">
-    update sub_saleorder_common
+    update sub_saleorder_item
     <set>
       <if test="id != null">
         ID = #{id,jdbcType=INTEGER},
@@ -153,7 +153,7 @@
     where viceID = #{viceid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.software.domain.SaleorderItem">
-    update sub_saleorder_common
+    update sub_saleorder_item
     set ID = #{id,jdbcType=INTEGER},
       itemID = #{itemid,jdbcType=INTEGER},
       itemName = #{itemname,jdbcType=VARCHAR},

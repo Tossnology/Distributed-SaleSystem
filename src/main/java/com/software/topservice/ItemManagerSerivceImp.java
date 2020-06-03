@@ -89,10 +89,12 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		detail.setItemnum(0);
 		detail.setTime(record.getTime());
 		detail.setTablename("base_warehourse_detail");
+		detail.setWarehourseid(-1);
 		detailService.insertSelective(detail);
 		
 		ItemToPrice examplePrice = record.toPrice();
 		examplePrice.setItemid(resultItem.getId());
+		examplePrice.setWarehourseid(-1);
 		examplePrice.setPurchaseprice(0.0f);
 		examplePrice.setRetailprice(0.0f);
 		examplePrice.setWholesaleprice(0.0f);
@@ -101,9 +103,11 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		for (SubBranchDetailMap subBranchDetailMap : resultMaps) 
 		{
 			detail.setTablename(subBranchDetailMap.getWarehoursedetailtable());
+			detail.setWarehourseid(subBranchDetailMap.getWarehourseid());
 			detailService.insertSelective(detail);
 			
 			examplePrice.setTablename(subBranchDetailMap.getItemtable());
+			examplePrice.setWarehourseid(subBranchDetailMap.getWarehourseid());
 			priceService.insertSelective(examplePrice);
 		}
 	}
@@ -152,10 +156,12 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 
 	@Override
 	public void updateByPrimaryKeySelective(ReceiveCargo record) 
-	{	
+	{
+		int recordWarehourseId = Integer.parseInt(record.getTablename());
 		record.fillTablename();
 		Item exampleItem = record.toItem();
 		ItemToPrice examplePrice = record.toPrice();
+		examplePrice.setWarehourseid(recordWarehourseId);
 		
 		itemService.updateByPrimaryKeySelective(exampleItem);
 		priceService.updateByPrimaryKeySelective(examplePrice);
@@ -180,6 +186,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		generalMap.setWarehoursename("总仓库");
 		generalMap.setWarehoursedetailtable("base_warehourse_detail");
 		generalMap.setItemtable("base_warehourse_itemtoprice");
+		generalMap.setWarehourseid(-1);
 		mapList.add(generalMap);
 		
 		List<WarehourseDetail> deleteDetail = new ArrayList<>();
@@ -191,6 +198,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		{
 			exampleDetail.setItemid(Integer.valueOf(record.getId()));
 			exampleDetail.setTablename(subBranchDetailMap.getWarehoursedetailtable());
+			exampleDetail.setWarehourseid(subBranchDetailMap.getWarehourseid());
 			resultDetail = detailService.selectByPrimaryKey(exampleDetail);
 			if (resultDetail.getItemnum()>0) 
 			{
@@ -202,12 +210,13 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 			resultPrice = new ItemToPrice();
 			resultPrice.setItemid(Integer.valueOf(record.getId()));
 			resultPrice.setTablename(subBranchDetailMap.getItemtable());
+			resultPrice.setWarehourseid(subBranchDetailMap.getWarehourseid());
 			deletePrice.add(resultPrice);
 			
 			if (!subBranchDetailMap.getWarehoursename().equals("总仓库")) 
 			{
 				// 看看商品是否被引用
-				if (isCitedBySaleOrder(Integer.valueOf(record.getId()), subBranchDetailMap.getSaleorderitemtable())) 
+				if (isCitedBySaleOrder(Integer.valueOf(record.getId()), subBranchDetailMap.getSaleorderitemtable()))
 				{
 					return "删除失败,商品"+record.getName()+"销售单引用";
 				}
@@ -258,7 +267,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		SaleorderItem exampleItem = new SaleorderItem();
 		exampleItem.setTablename(saleorderitemtablename);
 		exampleItem.setItemid(itemid);
-		if (saleorderItemSerivce.select(exampleItem).size()==0) 
+		if (saleorderItemSerivce.select(exampleItem).size()==0)
 		{
 			return false;
 		}

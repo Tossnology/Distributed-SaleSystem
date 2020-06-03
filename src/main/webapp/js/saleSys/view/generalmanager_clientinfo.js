@@ -146,7 +146,7 @@ $(document).on('click', '#save-btn', function() {
         type : $('#client-type').val(),
         note : $('#client-label').val()
     }
-    $('#clientModal').mmodal('hide');
+    $('#clientModal').modal('hide');
     if($('#client-id').val() == "") {
         alert(insertClient(client).info);
     } else {

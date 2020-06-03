@@ -45,17 +45,15 @@
     where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid, jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.software.domain.WarehourseDetail">
-    
     insert into ${tablename} (itemID, warehourseID, itemNum, time
       )
     values (#{itemid,jdbcType=INTEGER}, #{warehourseid, jdbcType=INTEGER}, #{itemnum,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.WarehourseDetail">
-    
     insert into ${tablename}
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="itemid != null">
+      <if test="itemid != null and itemid!=''">
         itemID,
       </if>
       <if test="warehourseid!=null and warehourseid!=''">
@@ -69,7 +67,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="itemid != null">
+      <if test="itemid != null and itemid!=''">
         #{itemid,jdbcType=INTEGER},
       </if>
       <if test="warehourseid!=null and warehourseid!=''">

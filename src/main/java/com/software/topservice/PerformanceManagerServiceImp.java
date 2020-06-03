@@ -54,8 +54,9 @@ public class PerformanceManagerServiceImp implements PerformanceManagerService
 		
 		// 读取仓库所有已付款未退货的订单数目
 		SaleorderCommon exampleCommon = new SaleorderCommon();
-		String commontablename = "sub_saleorder_common_"+String.format("%04d", Integer.valueOf(record.getWarehourseid()));
+		String commontablename = "sub_saleorder_common";
 		exampleCommon.setTablename(commontablename);
+		exampleCommon.setWarehourseid(Integer.parseInt(record.getWarehourseid()));
 		exampleCommon.setStatus(5);
 		List<SaleorderCommon> commonList = commonService.select(exampleCommon);
 		
@@ -167,7 +168,8 @@ public class PerformanceManagerServiceImp implements PerformanceManagerService
 		
 		// 遍历所有所有订单
 		SaleorderCommon exampleCommon = new SaleorderCommon();
-		String commontablename = "sub_saleorder_common_"+String.format("%04d", Integer.valueOf(record.getWarehourseid()));
+		String commontablename = "sub_saleorder_common";
+		exampleCommon.setTablename(commontablename);
 		exampleCommon.setPrincipalid(record.getPrincipalid());
 		exampleCommon.setTablename(commontablename);
 		exampleCommon.setStatus(5);

@@ -68,11 +68,11 @@
   </delete>
   
   <insert id="insert" parameterType="com.software.domain.Staff">
-    insert into sub_staff (ID, password, hourseID,
+    insert into sub_staff (ID, password,
       hourseName, name, gender, 
       phone, email, label
       )
-    values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{hourseid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{hoursename,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}
       )
@@ -144,9 +144,6 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="hourseid != null">
-        hourseID = #{hourseid,jdbcType=INTEGER},
-      </if>
       <if test="hoursename != null">
         hourseName = #{hoursename,jdbcType=VARCHAR},
       </if>
@@ -171,7 +168,6 @@
   <update id="updateByPrimaryKey" parameterType="com.software.domain.Staff">
     update sub_staff
     set password = #{password,jdbcType=VARCHAR},
-      hourseID = #{hourseid,jdbcType=INTEGER},
       hourseName = #{hoursename,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},

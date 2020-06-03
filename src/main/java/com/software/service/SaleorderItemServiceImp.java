@@ -1,5 +1,6 @@
 package com.software.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class SaleorderItemServiceImp implements SaleorderItemService {
 
 	@Override
 	public List<SaleorderItem> select(SaleorderItem record) {
-		return mapper.select(record);
+		List<SaleorderItem> tmp = mapper.select(record);
+		return (tmp==null)?new ArrayList<SaleorderItem>():tmp;
 	}
 
 	@Override
