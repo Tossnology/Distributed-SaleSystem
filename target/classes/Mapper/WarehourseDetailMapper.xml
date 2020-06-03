@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.software.dao.WarehourseDetailMapper">
   <resultMap id="BaseResultMap" type="com.software.domain.WarehourseDetail">
-    <id column="itemID" jdbcType="INTEGER" property="itemid" />
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="itemID" jdbcType="INTEGER" property="itemid" />
+    <result column="warehourseID" jdbcType="INTEGER" property="warehourseid" />
     <result column="itemNum" jdbcType="INTEGER" property="itemnum" />
     <result column="time" jdbcType="VARCHAR" property="time" />
   </resultMap>
   <sql id="Base_Column_List">
-    itemID, itemNum, time
+    itemID, warehourseID, itemNum, time
   </sql>
    <update id="createNewTable" parameterType="String">  
         CREATE TABLE ${tablename} (
@@ -24,7 +26,7 @@
     select 
     <include refid="Base_Column_List" />
     from ${tablename}
-    where itemID = #{itemid,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid, jdbcType=INTEGER}
   </select>
   <select id="select" parameterType="com.software.domain.WarehourseDetail" resultMap="BaseResultMap">
 		select *
@@ -33,23 +35,31 @@
 			<if test="itemid!=null and itemid!=''">
 				and itemID = #{itemid}
 			</if>
+			<if test="warehourseid!=null and warehourseid!=''">
+                and warehourseID = #{warehourseid}
+            </if>
 		</where>
 	</select>
   <delete id="deleteByPrimaryKey" parameterType="com.software.domain.WarehourseDetail">
     delete from ${tablename}
-    where itemID = #{itemid,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid, jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.software.domain.WarehourseDetail">
-    insert into ${tablename} (itemID, itemNum, time
+    
+    insert into ${tablename} (itemID, warehourseID, itemNum, time
       )
-    values (#{itemid,jdbcType=INTEGER}, #{itemnum,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}
+    values (#{itemid,jdbcType=INTEGER}, #{warehourseid, jdbcType=INTEGER}, #{itemnum,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.WarehourseDetail">
+    
     insert into ${tablename}
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="itemid != null">
         itemID,
+      </if>
+      <if test="warehourseid!=null and warehourseid!=''">
+        warehourseID,
       </if>
       <if test="itemnum != null">
         itemNum,
@@ -61,6 +71,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="itemid != null">
         #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="warehourseid!=null and warehourseid!=''">
+        #{warehourseid, jdbcType=INTEGER},
       </if>
       <if test="itemnum != null">
         #{itemnum,jdbcType=INTEGER},
@@ -80,13 +93,13 @@
         time = #{time,jdbcType=VARCHAR},
       </if>
     </set>
-    where itemID = #{itemid,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid, jdbcType=INTEGER}
   </update>
   
   <update id="updateByPrimaryKey" parameterType="com.software.domain.WarehourseDetail">
     update ${tablename}
     set itemNum = #{itemnum,jdbcType=INTEGER},
       time = #{time,jdbcType=VARCHAR}
-    where itemID = #{itemid,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid, jdbcType=INTEGER}
   </update>
 </mapper>

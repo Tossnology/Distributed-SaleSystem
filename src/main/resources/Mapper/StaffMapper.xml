@@ -35,15 +35,15 @@
   <select id="selectByPrimaryKey" parameterType="com.software.domain.Staff" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ${tablename}
+    from sub_staff
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <select id="count" parameterType="com.software.domain.Staff" resultType="java.lang.Integer">
-  	 	SELECT COUNT(*) FROM ${tablename}
+  	 	SELECT COUNT(*) FROM sub_staff
   </select>  
   <select id="select" parameterType="com.software.domain.Staff" resultMap="BaseResultMap">
 		select *
-		from ${tablename}
+		from sub_staff
 		<where>
 			<if test="id!=null and id!=''">
 				and ID = #{id}
@@ -63,12 +63,12 @@
 		</where>
 	</select>
   <delete id="deleteByPrimaryKey" parameterType="com.software.domain.Staff">
-    delete from ${tablename}
+    delete from sub_staff
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   
   <insert id="insert" parameterType="com.software.domain.Staff">
-    insert into ${tablename} (ID, password, hourseID, 
+    insert into sub_staff (ID, password, hourseID,
       hourseName, name, gender, 
       phone, email, label
       )
@@ -78,7 +78,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.Staff">
-    insert into ${tablename}
+    insert into sub_staff
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
@@ -139,7 +139,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.Staff">
-    update ${tablename}
+    update sub_staff
     <set>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
@@ -169,7 +169,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.software.domain.Staff">
-    update ${tablename}
+    update sub_staff
     set password = #{password,jdbcType=VARCHAR},
       hourseID = #{hourseid,jdbcType=INTEGER},
       hourseName = #{hoursename,jdbcType=VARCHAR},

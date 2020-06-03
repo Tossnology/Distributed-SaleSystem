@@ -7,7 +7,8 @@ public class ItemToPrice
      *  ID
      */
     private Integer id;
-
+    private Integer itemid;
+    private Integer warehourseid;
     /**
      *  name
      */
@@ -37,6 +38,14 @@ public class ItemToPrice
      *  label
      */
     private String label;
+
+    public Integer getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(Integer itemid) {
+        this.itemid = itemid;
+    }
 
     public String getTablename() {
 		return tablename;
@@ -103,12 +112,27 @@ public class ItemToPrice
         this.label = label == null ? null : label.trim();
     }
 
-	@Override
-	public String toString() 
-	{
-		return "ItemToPrice [tablename=" + tablename + ", id=" + id + ", name=" + name + ", retailprice=" + retailprice
-				+ ", wholesaleprice=" + wholesaleprice + ", purchaseprice=" + purchaseprice + ", time=" + time
-				+ ", label=" + label + "]";
-	}
-    
+    public Integer getWarehourseid() {
+        return warehourseid;
+    }
+
+    public void setWarehourseid(Integer warehourseid) {
+        this.warehourseid = warehourseid;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemToPrice{" +
+                "tablename='" + tablename + '\'' +
+                ", id=" + id +
+                ", itemid=" + itemid +
+                ", warehourseid=" + warehourseid +
+                ", name='" + name + '\'' +
+                ", retailprice=" + retailprice +
+                ", wholesaleprice=" + wholesaleprice +
+                ", purchaseprice=" + purchaseprice +
+                ", time='" + time + '\'' +
+                ", label='" + label + '\'' +
+                '}';
+    }
 }

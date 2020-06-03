@@ -92,7 +92,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		detailService.insertSelective(detail);
 		
 		ItemToPrice examplePrice = record.toPrice();
-		examplePrice.setId(resultItem.getId());
+		examplePrice.setItemid(resultItem.getId());
 		examplePrice.setPurchaseprice(0.0f);
 		examplePrice.setRetailprice(0.0f);
 		examplePrice.setWholesaleprice(0.0f);
@@ -115,7 +115,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 		record.fillTablename();
 		Item exampleItem = record.toItem();
 		ItemToPrice examplePrice = record.toPrice();
-		
+		System.out.println("ItemManagerServiceImp: " + exampleItem.toString());
 		List<Item> itemList = itemService.select(exampleItem);
 		Map<Integer, ReceiveCargo> map = new HashMap<Integer, ReceiveCargo>();
 		
@@ -134,7 +134,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 			try 
 			{
 				itemToPrice.setTablename(examplePrice.getTablename());
-				map.get(itemToPrice.getId()).initByPrice(itemToPrice);
+				map.get(itemToPrice.getItemid()).initByPrice(itemToPrice);
 			} catch (Exception e) 
 			{
 				continue;
@@ -200,7 +200,7 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 			deleteDetail.add(resultDetail);
 			
 			resultPrice = new ItemToPrice();
-			resultPrice.setId(Integer.valueOf(record.getId()));
+			resultPrice.setItemid(Integer.valueOf(record.getId()));
 			resultPrice.setTablename(subBranchDetailMap.getItemtable());
 			deletePrice.add(resultPrice);
 			

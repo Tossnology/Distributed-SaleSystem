@@ -6,8 +6,9 @@ public class WarehourseDetail
     /**
      * 物品ID itemID
      */
+    private Integer id;
     private Integer itemid;
-
+    private Integer warehourseid;
     /**
      * 物品数量 itemNum
      */
@@ -18,7 +19,22 @@ public class WarehourseDetail
      */
     private String time;
 
-    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getWarehourseid() {
+        return warehourseid;
+    }
+
+    public void setWarehourseid(Integer warehourseid) {
+        this.warehourseid = warehourseid;
+    }
+
     public String getTablename() {
 		return tablename;
 	}
@@ -59,12 +75,19 @@ public class WarehourseDetail
 		}
     	else
     	{
-    		this.tablename = "sub_warehourse_detail_"+String.format("%04d", Integer.valueOf(this.tablename));
+    		this.tablename = "sub_warehourse_detail";
     	}
 	}
-	@Override
-	public String toString() {
-		return "WarehourseDetail [tablename=" + tablename + ", itemid=" + itemid + ", itemnum=" + itemnum + ", time="
-				+ time + "]";
-	}
+
+    @Override
+    public String toString() {
+        return "WarehourseDetail{" +
+                "tablename='" + tablename + '\'' +
+                ", id=" + id +
+                ", itemid=" + itemid +
+                ", warehourseid=" + warehourseid +
+                ", itemnum=" + itemnum +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

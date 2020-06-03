@@ -74,7 +74,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 	{
 		if (orderList.size()==0) 
 		{
-			System.out.println("没有商品，insert个屁");
+			System.out.println("没有商品");
 			return;
 		}
 		// 插入的时候不知道订单ID
@@ -260,7 +260,7 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 			for (WarehourseOrderItem warehourseOrderItem : itemList) 
 			{
 				price.setTablename(subBranchDetailMap.getItemtable());
-				price.setId(warehourseOrderItem.getItemid());
+				price.setItemid(warehourseOrderItem.getItemid());
 				price.setName(warehourseOrderItem.getItemname());
 				price.setPurchaseprice(warehourseOrderItem.getPerprice());
 				price.setTime(order.getChecktime());

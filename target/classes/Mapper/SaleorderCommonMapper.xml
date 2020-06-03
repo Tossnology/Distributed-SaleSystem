@@ -59,13 +59,13 @@
   <select id="selectByPrimaryKey" parameterType="com.software.domain.SaleorderCommon" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ${tablename}
+    from sub_saleorder_common
     where ID = #{id,jdbcType=INTEGER}
   </select>
   
   <select id="select" parameterType="com.software.domain.SaleorderCommon" resultMap="BaseResultMap">
 		select *
-		from ${tablename}
+		from sub_saleorder_common
 		<where>
 			<if test="id!=null and id!=''">
 				and ID = #{id}
@@ -104,11 +104,11 @@
 	</select>
 
   <delete id="deleteByPrimaryKey" parameterType="com.software.domain.SaleorderCommon">
-    delete from ${tablename}
+    delete from sub_saleorder_common
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.software.domain.SaleorderCommon">
-    insert into ${tablename} (ID, warehourseID, warehourseName, 
+    insert into sub_saleorder_common (ID, warehourseID, warehourseName,
       clientID, clientName, principalID, 
       principalName, createTime, checkTime, 
       gatherTime, returnTime, posTime, 
@@ -124,7 +124,7 @@
       #{exception,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.SaleorderCommon">
-    insert into ${tablename}
+    insert into sub_saleorder_common
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null and id!=''">
         ID,
@@ -251,7 +251,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.SaleorderCommon">
-    update ${tablename}
+    update sub_saleorder_common
     <set>
       <if test="warehourseid != null and warehourseid!=''">
         warehourseID = #{warehourseid,jdbcType=INTEGER},
@@ -314,7 +314,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.software.domain.SaleorderCommon">
-    update ${tablename}
+    update sub_saleorder_common
     set warehourseID = #{warehourseid,jdbcType=INTEGER},
       warehourseName = #{warehoursename,jdbcType=VARCHAR},
       clientID = #{clientid,jdbcType=INTEGER},

@@ -10,17 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mysql.cj.PingTarget;
 import com.software.domain.SaleorderCommon;
 import com.software.domain.Staff;
 import com.software.domain.SubBranchDetailMap;
 import com.software.service.SaleorderCommonService;
 import com.software.service.StaffService;
-import com.software.service.StoreManagerService;
 import com.software.service.SubBranchDetailMapService;
 import com.software.trans.WarehoursePerformance;
 

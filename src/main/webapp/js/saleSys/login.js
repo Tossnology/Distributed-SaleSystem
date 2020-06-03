@@ -11,27 +11,27 @@ $("#login-btn").click(
         var account = $("#account").val();
         var password = $("#password").val();
         var param;
-        var url = "http://localhost:8080/exam/"; //TODO waiturl
+        var url = "http://localhost:8080/login/"; //TODO waiturl
         var destination = "" //网页跳转
         var type = $('#type').val();
 
         if (type == "clerk") {
             //TODO 登陆器
-            url = url + "administrator/login"
+            url = url + "administrator"
             destination = destination + "ShopAssistant/HomeIndex.html"
             param = 
                 '{"id":"' + account + '",'
                 + '"password":"' + password + '",'
                 + '"type":"clerk"}';
         } else if (type == "shop-manager") {
-            url = url + "teacher/login"
+            url = url + "teacher"
             destination = destination + "ShopManager/HomeIndex.html"
             param = 
             '{"id":"' + account + '",'
             + '"password":"' + password + '",'
             + '"type":"shop-manager"}';
         } else {
-            url = url + "student/login"
+            url = url + "student"
             destination = destination + "GeneralManager/HomeIndex.html"
             param = 
             '{"id":"' + account + '",'
@@ -67,7 +67,7 @@ $("#login-btn").click(
         var secondrequest = 
             '{"id":"' + account +'"}';
         dataajax = $.ajax({
-            url: "http://localhost:8080/exam/" + "secondRequest",
+            url: "http://localhost:8080/login/secondRequest",
             data: secondrequest,
             async: false,
             type: "post",

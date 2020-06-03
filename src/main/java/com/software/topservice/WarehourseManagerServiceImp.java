@@ -68,40 +68,7 @@ public class WarehourseManagerServiceImp implements WarehourseManagerService {
 		SubBranchDetailMap exampleBranch = new SubBranchDetailMap();
 		exampleBranch.setWarehourseid(hourseid);
 		mapService.delete(exampleBranch);
-		
-		//  删除5个表
-		// 	sub_staff_hourseid
-		// 	sub_saleorder_common_hourseid
-		//	sub_saleorder_item_hourseid
-		//  sub_warehourse_itemToPrice_hourseid
-		//	sub_warehourse_detail_hourseid
-		
-		String staffTableName = "sub_staff_"+String.format("%04d", hourseid);
-		String saleorderCommonTableName = "sub_saleorder_common_"+String.format("%04d", hourseid);
-		String saleorderItemTableName = "sub_saleorder_item_"+String.format("%04d", hourseid);
-		String warehourseItemToPriceTableName = "sub_warehourse_itemtoprice_"+String.format("%04d", hourseid);
-		String warehourseDetailTableName = "sub_warehourse_detail_"+String.format("%04d", hourseid);
-		
-		Staff exampleStaff = new Staff();
-		exampleStaff.setTablename(staffTableName);
-		staffService.dropTable(exampleStaff);
-		
-		SaleorderCommon exampleCommon = new SaleorderCommon();
-		exampleCommon.setTablename(saleorderCommonTableName);
-		salecommonSevice.dropTable(exampleCommon);
-		
-		SaleorderItem exampleItem = new SaleorderItem();
-		exampleItem.setTablename(saleorderItemTableName);
-		saleitemService.dropTable(exampleItem);
-		
-		ItemToPrice examplePrice = new ItemToPrice();
-		examplePrice.setTablename(warehourseItemToPriceTableName);
-		priceService.dropTable(examplePrice);
-		
-		WarehourseDetail exampleDetail = new WarehourseDetail();
-		exampleDetail.setTablename(warehourseDetailTableName);
-		detailService.dropTable(exampleDetail);
-		
+
 		return "删除成功";
 	}
 
@@ -114,33 +81,14 @@ public class WarehourseManagerServiceImp implements WarehourseManagerService {
 		// 查取，获取id
 		Warehourse result = hourseService.select(record).get(0);
 		Integer hourseid = result.getId();
-		
+
 		// 加入五个表
-		String staffTableName = "sub_staff_"+String.format("%04d", hourseid);
-		String saleorderCommonTableName = "sub_saleorder_common_"+String.format("%04d", hourseid);
-		String saleorderItemTableName = "sub_saleorder_item_"+String.format("%04d", hourseid);
-		String warehourseItemToPriceTableName = "sub_warehourse_itemtoprice_"+String.format("%04d", hourseid);
-		String warehourseDetailTableName = "sub_warehourse_detail_"+String.format("%04d", hourseid);
-		
-		Staff exampleStaff = new Staff();
-		exampleStaff.setTablename(staffTableName);
-		staffService.createNewTable(exampleStaff);
-		
-		SaleorderCommon exampleCommon = new SaleorderCommon();
-		exampleCommon.setTablename(saleorderCommonTableName);
-		salecommonSevice.createNewTable(exampleCommon);
-		
-		SaleorderItem exampleItem = new SaleorderItem();
-		exampleItem.setTablename(saleorderItemTableName);
-		saleitemService.createNewTable(exampleItem);
-		
-		ItemToPrice examplePrice = new ItemToPrice();
-		examplePrice.setTablename(warehourseItemToPriceTableName);
-		priceService.createNewTable(examplePrice);
-		
-		WarehourseDetail exampleDetail = new WarehourseDetail();
-		exampleDetail.setTablename(warehourseDetailTableName);
-		detailService.createNewTable(exampleDetail);
+		String staffTableName = "sub_staff";
+		String saleorderCommonTableName = "sub_saleorder_common";
+		String saleorderItemTableName = "sub_saleorder_item";
+		String warehourseItemToPriceTableName = "sub_warehourse_itemtoprice";
+		String warehourseDetailTableName = "sub_warehourse_detail";
+
 		
 		// 建立映射关系
 		SubBranchDetailMap exampleMap = new SubBranchDetailMap();

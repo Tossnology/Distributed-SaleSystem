@@ -118,7 +118,7 @@ public class ReceiveCargo
 		}
 		else
 		{
-			this.tablename = "sub_warehourse_itemtoprice_"+String.format("%04d", Integer.valueOf(tablename));
+			this.tablename = "sub_warehourse_itemtoprice";
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class ReceiveCargo
 		price.setTablename(this.tablename);
 		if (!this.id.equals("")) 
 		{
-			price.setId(Integer.valueOf(this.id));
+			price.setItemid(Integer.valueOf(this.id));
 		}
 		price.setName(this.name);
 		if (!this.retailprice.equals("")) 

@@ -28,7 +28,7 @@ import com.software.topservice.LoginManagerService;
 import com.software.trans.ReceiveUser;
 
 @RestController
-@RequestMapping("/exam")
+@RequestMapping("/login")
 public class LoginController 
 {
 	@Autowired
@@ -36,7 +36,7 @@ public class LoginController
 	
 	private Map<String, SubBranchDetailMap> mp = new HashMap<String, SubBranchDetailMap>();
 	
-	@RequestMapping(value = {"/administrator/login","/teacher/login","/student/login"})
+	@RequestMapping(value = {"/administrator","/teacher","/student"})
 	public String login(@RequestBody ReceiveUser param)
 	{
 		String id = param.getId();

@@ -60,7 +60,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 	{
 		if (orderList.size()==0) 
 		{
-			System.out.println("没有商品，insert个屁");
+			System.out.println("没有商品");
 			return "订单中没有商品";
 		}
 		// 插入的时候是没有ID的，插入，查出来， 这样可以后去ID
@@ -84,6 +84,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 		// 查利润
 		ItemToPrice tempPrice = new ItemToPrice();
 		tempPrice.setTablename(example.getItemtopricetable());
+		tempPrice.setWarehourseid(exampleCommon.getWarehourseid());
 		
 		// 记录需要插入的商品
 		SaleorderItem tempItem;
@@ -108,7 +109,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 			// 如果是零售，一步跳到5，需要检测数目够不够
 			if (example.getStatus().equals("5")) 
 			{
-				tempDetail = isEnough(tempItem, receiveOrder.getWarehoursedetailtablename());
+				tempDetail = isEnough(tempItem, receiveOrder.getWarehoursedetailtablename(), exampleCommon.getWarehourseid().toString());
 				if (tempDetail==null) 
 				{
 					System.out.println("数量不知，无法零售");
@@ -118,7 +119,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 				detailList.add(tempDetail);
 			}
 			// 算利润
-			tempPrice.setId(tempItem.getItemid());
+			tempPrice.setItemid(tempItem.getItemid());
 			sumPurchase += priceService.selectByPrimaryKey(tempPrice).getPurchaseprice();
 		}
 		
@@ -129,7 +130,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 		
 		if (example.getStatus().equals("5")) 
 		{
-			//detailList 更新仓库信息
+			//detailList 更新仓库库存信息
 			for (WarehourseDetail detail : detailList) 
 			{
 				detailService.updateByPrimaryKey(detail);
@@ -159,12 +160,14 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 		// 删除原订单所有商品
 		SaleorderItem tempItem = new SaleorderItem();
 		tempItem.setTablename(example.getItemtablename());
+		tempItem.setViceid(null);
 		tempItem.setId(exampleCommon.getId());
 		itemService.deleteByID(tempItem);
 		
 		// 更新利润
 		ItemToPrice tempPrice = new ItemToPrice();
 		tempPrice.setTablename(example.getItemtopricetable());
+		tempPrice.setWarehourseid(Integer.parseInt(example.getWarehourseid()));
 		float margin = 0;
 		float sumPurchase = 0;
 		for (ReceiveOrder receiveOrder : orderList) 
@@ -175,7 +178,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 			tempItem.setId(exampleCommon.getId());
 			itemService.insertSelective(tempItem);
 			// 算利润
-			tempPrice.setId(tempItem.getItemid());
+			tempPrice.setItemid(tempItem.getItemid());
 			sumPurchase += priceService.selectByPrimaryKey(tempPrice).getPurchaseprice();
 		}
 		
@@ -211,7 +214,7 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 		for (SaleorderItem saleorderItem : itemList) 
 		{
 			// 查看当前商品仓库里面一共有多少个
-			resultDetail = isEnough(saleorderItem, order.getWarehoursedetailtablename());
+			resultDetail = isEnough(saleorderItem, order.getWarehoursedetailtablename(), order.getWarehourseid());
 			if (resultDetail==null) 
 			{
 				// 商品数量不足
@@ -302,10 +305,11 @@ public class SaleOrderManagerServiceImp implements SaleOrderManagerService
 		}
 	}
 	
-	private WarehourseDetail isEnough(SaleorderItem item, String detailTablename)
+	private WarehourseDetail isEnough(SaleorderItem item, String detailTablename, String warehourseId)
 	{
 		WarehourseDetail exampleDetail = new WarehourseDetail();
 		exampleDetail.setTablename(detailTablename);
+		exampleDetail.setWarehourseid(Integer.parseInt(warehourseId));
 		exampleDetail.setItemid(item.getItemid());
 		WarehourseDetail resultDetail = detailService.selectByPrimaryKey(exampleDetail);
 		if (resultDetail.getItemnum()<item.getItemnum()) 

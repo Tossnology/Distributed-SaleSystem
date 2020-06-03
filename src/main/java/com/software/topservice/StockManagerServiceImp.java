@@ -33,6 +33,7 @@ public class StockManagerServiceImp implements StockManagerService
 		List<Stock> stockList = new ArrayList<Stock>();
 		Stock tempStock;
 		WarehourseDetail exampleDetail = new WarehourseDetail(); // 用于记录信息，查询
+		exampleDetail.setWarehourseid(Integer.parseInt(record.getHourseid()));
 		WarehourseDetail resultDetail;
 		for (Item item : itemList) 
 		{
@@ -46,11 +47,11 @@ public class StockManagerServiceImp implements StockManagerService
 			exampleDetail.setTablename(tablename);
 			
 			resultDetail = detailService.selectByPrimaryKey(exampleDetail);
-			
-			// 设置商品数量信息
-			tempStock.initByDetail(resultDetail);
-			
-			stockList.add(tempStock);
+			if(resultDetail != null) {
+				// 设置商品数量信息
+				tempStock.initByDetail(resultDetail);
+				stockList.add(tempStock);
+			}
 		}
 		return stockList;
 	}
@@ -63,6 +64,7 @@ public class StockManagerServiceImp implements StockManagerService
 		{
 			stock.fillTablename();
 			exampleDetail = stock.toDetail();
+			exampleDetail.setWarehourseid(Integer.parseInt(stock.getHourseid()));
 			detailService.updateByPrimaryKey(exampleDetail);
 		}
 	}

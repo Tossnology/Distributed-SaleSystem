@@ -3,6 +3,8 @@
 <mapper namespace="com.software.dao.ItemToPriceMapper">
   <resultMap id="BaseResultMap" type="com.software.domain.ItemToPrice">
     <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="itemID" jdbcType="INTEGER" property="itemid" />
+    <result column="warehourseID" jdbcType="INTEGER" property="warehourseid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="retailPrice" jdbcType="REAL" property="retailprice" />
     <result column="wholesalePrice" jdbcType="REAL" property="wholesaleprice" />
@@ -11,7 +13,7 @@
     <result column="label" jdbcType="VARCHAR" property="label" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, name, retailPrice, wholesalePrice, purchasePrice, time, label
+    ID, itemID, warehourseID, name, retailPrice, wholesalePrice, purchasePrice, time, label
   </sql>
   <update id="createNewTable" parameterType="String">  
         CREATE TABLE ${tablename} (
@@ -33,15 +35,18 @@
     select 
     <include refid="Base_Column_List" />
     from ${tablename}
-    where ID = #{id,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER}
   </select>
   <select id="select" parameterType="com.software.domain.ItemToPrice" resultMap="BaseResultMap">
 		select *
 		from ${tablename}
 		<where>
-			<if test="id!=null and id!=''">
-				and ID = #{id}
+			<if test="itemid!=null and itemid!=''">
+				and itemID = #{itemid}
 			</if>
+            <if test="warehourseid!=null and warehourseid!=''">
+              and warehourseID = #{warehourseid}
+            </if>
 			<if test="name!=null and name!=''">
 				and name = #{name}
 			</if>
@@ -52,23 +57,28 @@
 	</select>
   <delete id="deleteByPrimaryKey" parameterType="com.software.domain.ItemToPrice">
     delete from ${tablename}
-    where ID = #{id,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid,jdbcType=INTEGER}
   </delete>
   
   
   <insert id="insert" parameterType="com.software.domain.ItemToPrice">
-    insert into ${tablename} (ID, name, retailPrice, 
+
+    insert into ${tablename} (itemID, warehourseID, name, retailPrice,
       wholesalePrice, purchasePrice, time, 
       label)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{retailprice,jdbcType=REAL}, 
+    values (#{itemid,jdbcType=INTEGER}, #{warehourseid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{retailprice,jdbcType=REAL},
       #{wholesaleprice,jdbcType=REAL}, #{purchaseprice,jdbcType=REAL}, #{time,jdbcType=VARCHAR}, 
       #{label,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.ItemToPrice">
+
     insert into ${tablename}
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
+      <if test="itemid != null">
+        itemID,
+      </if>
+      <if test="warehourseid!=null and warehourseid!=''">
+        warehourseID,
       </if>
       <if test="name != null">
         name,
@@ -90,8 +100,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="warehourseid!=null and warehourseid!=''">
+        #{warehourseid, jdbyType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -135,7 +148,7 @@
         label = #{label,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.software.domain.ItemToPrice">
     update ${tablename}
@@ -145,6 +158,6 @@
       purchasePrice = #{purchaseprice,jdbcType=REAL},
       time = #{time,jdbcType=VARCHAR},
       label = #{label,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid,jdbcType=INTEGER}
   </update>
 </mapper>

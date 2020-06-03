@@ -100,7 +100,7 @@ public class Stock
 		}
     	else
     	{
-    		this.tablename = "sub_warehourse_detail_"+String.format("%04d", Integer.valueOf(this.hourseid));
+    		this.tablename = "sub_warehourse_detail";
 		}
     }
     
@@ -138,6 +138,7 @@ public class Stock
     public WarehourseDetail toDetail()
     {
     	WarehourseDetail detail = new WarehourseDetail();
+    	detail.setWarehourseid(Integer.parseInt(this.getHourseid()));
     	detail.setTablename(this.tablename);
     	if(!this.itemid.equals("")){
     		detail.setItemid(Integer.valueOf(this.itemid));

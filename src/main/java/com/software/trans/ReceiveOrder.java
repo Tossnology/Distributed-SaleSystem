@@ -317,10 +317,10 @@ public class ReceiveOrder
 	public void fillTablename()
 	{
 		String id = String.format("%04d", Integer.valueOf(this.warehourseid));
-		this.commontablename = "sub_saleorder_common_"+id;
-		this.itemtablename	 =	"sub_saleorder_item_"+id;
-		this.warehoursedetailtablename = "sub_warehourse_detail_"+id;
-		this.itemtopricetable = "sub_warehourse_itemtoprice_"+id;
+		this.commontablename = "sub_saleorder_common";
+		this.itemtablename	 =	"sub_saleorder_item";
+		this.warehoursedetailtablename = "sub_warehourse_detail";
+		this.itemtopricetable = "sub_warehourse_itemtoprice";
 	}
 	
 	@Override
