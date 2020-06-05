@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class SaleorderItem 
+import java.io.Serializable;
+
+public class SaleorderItem implements Serializable
 {
 
 	private String tablename;

@@ -221,7 +221,7 @@ public class SendOrder
     	this.status = common.getStatus();
     	this.sumprice = common.getSumprice();
     	this.gather = common.getGather();
-    	this.change = common.getChange();
+    	this.change = common.getChanges();
     	this.margin = common.getMargin();
     	this.type = common.getType();
     	this.note = common.getNote();

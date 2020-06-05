@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class ItemToPrice 
+import java.io.Serializable;
+
+public class ItemToPrice implements Serializable
 {
 	private String tablename;
     /**

@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class WarehourseOrderItem 
+import java.io.Serializable;
+
+public class WarehourseOrderItem implements Serializable
 {
     /**
      * 订单副ID viceID

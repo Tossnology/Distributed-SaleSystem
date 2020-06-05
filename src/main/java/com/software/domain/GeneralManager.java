@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class GeneralManager {
+import java.io.Serializable;
+
+public class GeneralManager implements Serializable {
     /**
      * 总经理ID ID
      */

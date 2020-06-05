@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class WarehourseDetail 
+import java.io.Serializable;
+
+public class WarehourseDetail implements Serializable
 {
 	private String tablename;
     /**

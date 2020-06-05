@@ -3,6 +3,8 @@ package com.software.topservice;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.software.service.ItemCacheService;
+import com.software.service.WarehourseDetailCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,10 @@ import com.software.trans.Stock;
 public class StockManagerServiceImp implements StockManagerService 
 {
 	@Autowired
-	private ItemService itemService;
+	private ItemCacheService itemService;
 	
 	@Autowired
-	private WarehourseDetailService detailService;
+	private WarehourseDetailCacheService detailService;
 
 	@Override
 	public List<Stock> select(Stock record) 

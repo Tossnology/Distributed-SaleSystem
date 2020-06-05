@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class SubBranchDetailMap {
+import java.io.Serializable;
+
+public class SubBranchDetailMap implements Serializable {
     /**
      *  ID
      */

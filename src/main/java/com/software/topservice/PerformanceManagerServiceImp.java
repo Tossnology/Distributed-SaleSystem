@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.software.service.SaleorderCommonCacheService;
+import com.software.service.StaffCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.software.domain.SaleorderCommon;
 import com.software.domain.Staff;
 import com.software.domain.SubBranchDetailMap;
-import com.software.service.SaleorderCommonService;
 import com.software.service.StaffService;
 import com.software.service.SubBranchDetailMapService;
 import com.software.trans.WarehoursePerformance;
@@ -25,10 +26,10 @@ import com.software.trans.WarehoursePerformance;
 public class PerformanceManagerServiceImp implements PerformanceManagerService 
 {
 	@Autowired
-	private SaleorderCommonService commonService;
+	private SaleorderCommonCacheService commonService;
 	
 	@Autowired
-	private StaffService staffService;
+	private StaffCacheService staffService;
 
 	@Autowired
 	private SubBranchDetailMapService mapService;

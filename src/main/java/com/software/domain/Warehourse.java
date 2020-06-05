@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class Warehourse {
+import java.io.Serializable;
+
+public class Warehourse implements Serializable {
     private Integer id;
     private String name;
     private String location;

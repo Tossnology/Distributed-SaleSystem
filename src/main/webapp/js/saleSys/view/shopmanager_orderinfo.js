@@ -428,9 +428,9 @@ $(document).on('click', '#pay-btn', function () {
     var order = tempOrderMap.get(orderid);
     console.log("zzzzz : ", order);
     $('#pay-order-id').val(orderid);
-    $('#pay-client-name').val(order[0].get("clientname"));
-    $('#pay-pricinpal-name').val(order[0].get("principalname"));
-    $('#pay-total-price').val(order[0].get("sumprice"));
+    $('#pay-client-name').val(order.clientname);
+    $('#pay-pricinpal-name').val(order.principalname);
+    $('#pay-total-price').val(order.sumprice);
     var editTable = document.getElementById("temp-pay-cargo-tbody");
     editTable.innerHTML = "";
     for (var i = 0; i < order.length; i++) {
@@ -559,7 +559,7 @@ $('#save-btn').click(function () {
     //新建订单
     tempCargoMap.forEach(function(value, key) {
     	var obj = {
-                id: $('#order-id').val(),  //仓库单id
+                orderid: $('#order-id').val(),  //仓库单id
                 warehourseid: getCookie("warehourseid"),
                 warehoursename: getCookie("warehoursename"),                                 //填充名称
                 principalid: getCookie("principalid"),

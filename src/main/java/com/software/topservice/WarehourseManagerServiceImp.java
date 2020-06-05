@@ -4,26 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.software.dao.WarehourseMapper;
 import com.software.domain.ItemToPrice;
-import com.software.domain.SaleorderCommon;
-import com.software.domain.SaleorderItem;
-import com.software.domain.Staff;
 import com.software.domain.SubBranchDetailMap;
 import com.software.domain.Warehourse;
 import com.software.domain.WarehourseDetail;
 import com.software.domain.WarehourseOrderCommon;
-import com.software.service.ItemToPriceService;
-import com.software.service.SaleorderCommonService;
-import com.software.service.SaleorderItemService;
-import com.software.service.StaffService;
-import com.software.service.SubBranchDetailMapService;
-import com.software.service.WarehourseDetailService;
-import com.software.service.WarehourseOrderCommonService;
-import com.software.service.WarehourseService;
 
 @Service
 public class WarehourseManagerServiceImp implements WarehourseManagerService {
@@ -35,22 +24,22 @@ public class WarehourseManagerServiceImp implements WarehourseManagerService {
 	private SubBranchDetailMapService mapService;
 	
 	@Autowired
-	private StaffService staffService;
+	private StaffCacheService staffService;
 	
 	@Autowired
-	private SaleorderCommonService salecommonSevice;
+	private SaleorderCommonCacheService salecommonSevice;
 	
 	@Autowired
-	private SaleorderItemService saleitemService;
+	private SaleorderItemCacheService saleitemService;
 	
 	@Autowired
-	private ItemToPriceService priceService;
+	private ItemToPriceCacheService priceService;
 	
 	@Autowired
-	private WarehourseDetailService detailService;
+	private WarehourseDetailCacheService detailService;
 	
 	@Autowired
-	private WarehourseOrderCommonService warehourseCommonService;
+	private WarehourseOrderCommonCacheService warehourseCommonService;
 	
 	@Override
 	public String deleteByPrimaryKey(Warehourse record) 

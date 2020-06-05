@@ -114,7 +114,7 @@ public class ClientController
 		service.updateByPrimaryKeySelective(client);
 		
 		Map<String, String> result = new HashMap<String, String>();
-		result.put("info", "充值成功");
+		result.put("info", "更新成功");
 		return result;
 	}
 }

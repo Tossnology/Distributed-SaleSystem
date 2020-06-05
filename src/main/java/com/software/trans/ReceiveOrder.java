@@ -1,7 +1,5 @@
 package com.software.trans;
 
-import java.util.List;
-
 import com.software.domain.SaleorderCommon;
 import com.software.domain.SaleorderItem;
 
@@ -260,7 +258,7 @@ public class ReceiveOrder
 		}
 		if (!this.sumprice.equals("")) 
 		{
-			common.setSumprice(Float.valueOf(this.ordersumprice));
+			common.setSumprice(Float.valueOf(this.sumprice));
 		}
 		if (!this.gather.equals("")) 
 		{
@@ -268,7 +266,7 @@ public class ReceiveOrder
 		}
 		if (!this.change.equals("")) 
 		{
-			common.setChange(Float.valueOf(this.change));
+			common.setChanges(Float.valueOf(this.change));
 		}
 		if (!this.margin.equals("")) 
 		{

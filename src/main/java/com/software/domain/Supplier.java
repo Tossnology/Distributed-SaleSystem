@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class Supplier {
+import java.io.Serializable;
+
+public class Supplier implements Serializable {
     /**
      * 编号 id
      */

@@ -1,8 +1,8 @@
 package com.software.domain;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class SaleorderCommon 
+public class SaleorderCommon implements Serializable
 {
 	private String tablename;
     private Integer id;
@@ -20,7 +20,7 @@ public class SaleorderCommon
     private Integer status;
     private Float sumprice;
     private Float gather;
-    private Float change;
+    private Float changes;
     private Float margin;
     private String type;
     private String note;
@@ -154,12 +154,12 @@ public class SaleorderCommon
         this.gather = gather;
     }
 
-    public Float getChange() {
-        return change;
+    public Float getChanges() {
+        return changes;
     }
 
-    public void setChange(Float change) {
-        this.change = change;
+    public void setChanges(Float changes) {
+        this.changes = changes;
     }
 
     public Float getMargin() {
@@ -201,7 +201,7 @@ public class SaleorderCommon
 				+ ", principalid=" + principalid + ", principalname=" + principalname + ", createtime=" + createtime
 				+ ", checktime=" + checktime + ", gathertime=" + gathertime + ", returntime=" + returntime
 				+ ", postime=" + postime + ", status=" + status + ", sumprice=" + sumprice + ", gather=" + gather
-				+ ", change=" + change + ", margin=" + margin + ", type=" + type + ", note=" + note + ", exception="
+				+ ", change=" + changes + ", margin=" + margin + ", type=" + type + ", note=" + note + ", exception="
 				+ exception + "]";
 	}
     

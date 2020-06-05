@@ -44,69 +44,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.software.dao" targetProject="SaleSystem">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-<!--         <table tableName="base_warehourse_item" domainObjectName="Item" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- -->    	
- 	<!-- 	<table tableName="base_warehourse_detail" domainObjectName="WarehourseDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-    	<table tableName="client" domainObjectName="Client" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-    	<table tableName="general_manager" domainObjectName="GeneralManager" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-    	<table tableName="store_manager" domainObjectName="StoreManager" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-     -->	
-<!--      <table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- -->    
-<!--  		<table tableName="sub_saleorder_example" domainObjectName="SaleOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- -->    
- <!-- 	<table tableName="sub_staff_example" domainObjectName="Staff" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-    	<table tableName="warehourse" domainObjectName="Warehourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-      -->
-    <!--   	<table tableName="sub_saleorder_common_example" domainObjectName="SaleorderCommon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-      	<table tableName="sub_saleorder_item_example" domainObjectName="SaleorderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-      	<table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-     -->
-<!--      	<table tableName="warehourse_order_common" domainObjectName="WarehourseOrderCommon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- -->    
-<!--  	<table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  	<table tableName="base_warehourse_item" domainObjectName="Item" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  	<table tableName="base_warehourse_detail" domainObjectName="WarehourseDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--    <table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--    <table tableName="warehourse" domainObjectName="Warehourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  		<table tableName="sub_staff_example" domainObjectName="Staff" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- -->
-<!--   	<table tableName="store_manager" domainObjectName="StoreManager" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>	
- -->
-<!--  		<table tableName="warehourse" domainObjectName="Warehourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 		
-<!--  	<table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  		<table tableName="warehourse" domainObjectName="Warehourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 		
-<!--  	 <table tableName="client" domainObjectName="Client" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  	<table tableName="sub_staff_example" domainObjectName="Staff" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	
-<!--  	 <table tableName="sub_saleorder_common_example" domainObjectName="SaleorderCommon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-     <table tableName="sub_saleorder_item_example" domainObjectName="SaleorderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 -->
- 	   <!--    <table tableName="item" domainObjectName="Item" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 	  <table tableName="base_warehourse_itemtoprice" domainObjectName="ItemToPrice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 	 -->
-<!--  	 	 <table tableName="sub_branch_detail_map" domainObjectName="SubBranchDetailMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	 	 
- 	<!-- <table tableName="item" domainObjectName="Item" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	<table tableName="base_warehourse_itemtoprice" domainObjectName="ItemToPrice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 -->
-<!--  	 <table tableName="warehourse_order_common" domainObjectName="WarehourseOrderCommon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	<!--  <table tableName="warehourse_order_item" domainObjectName="WarehourseOrderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 -->
-<!--  	 <table tableName="client" domainObjectName="Client" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- --> 	 
- 	<!-- <table tableName="sub_staff_example" domainObjectName="Staff" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
- 	 -->
+
  	 <table tableName="client" domainObjectName="Client" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
  	 <table tableName="viplevel" domainObjectName="VIPLevel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
  	 </context>	 

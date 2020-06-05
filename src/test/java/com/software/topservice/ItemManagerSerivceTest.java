@@ -2,6 +2,7 @@ package com.software.topservice;
 
 import static org.junit.Assert.*;
 
+import com.software.service.SaleorderItemCacheService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ItemManagerSerivceTest
 	private ItemManagerSerivce service;
 	
 	@Autowired
-	private SaleorderItemService saleorderService;
+	private SaleorderItemCacheService saleorderService;
 	
 	@Test
 	public void testInsert() 

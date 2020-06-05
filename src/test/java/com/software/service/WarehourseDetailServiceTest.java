@@ -15,7 +15,7 @@ import com.software.domain.WarehourseDetail;
 public class WarehourseDetailServiceTest 
 {
 	@Autowired
-	private WarehourseDetailService service;
+	private WarehourseDetailCacheService service;
 	@Test
 	public void test() 
 	{

@@ -2,6 +2,7 @@ package com.software.topservice;
 
 import java.util.List;
 
+import com.software.service.StoreManagerCacheService;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import com.software.service.SubBranchDetailMapService;
 public class TopStoreManagerServiceImp implements TopStoreManagerService 
 {
 	@Autowired
-	private StoreManagerService managerService;
+	private StoreManagerCacheService managerService;
 	
 	@Autowired
 	private SubBranchDetailMapService mapService;

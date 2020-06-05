@@ -26,7 +26,7 @@
   <sql id="Base_Column_List">
     ID, warehourseID, warehourseName, clientID, clientName, principalID, principalName, 
     createTime, checkTime, gatherTime, returnTime, posTime, status, sumPrice, gather, 
-    change, margin, type, note, exception
+    changes, margin, type, note, exception
   </sql>
     <update id="createNewTable" parameterType="String">  
         CREATE TABLE ${tablename} (
@@ -45,7 +45,7 @@
 		  `status` int(11) NOT NULL,
 		  `sumPrice` float DEFAULT NULL COMMENT '总价',
 		  `gather` float DEFAULT NULL COMMENT '收款',
-		  `change` float DEFAULT NULL COMMENT '找零',
+		  `changes` float DEFAULT NULL COMMENT '找零',
 		  `margin` float DEFAULT NULL COMMENT '利润',
 		  `type` varchar(45) DEFAULT NULL COMMENT '订单类型',
 		  `note` varchar(45) DEFAULT NULL COMMENT '备注信息',
@@ -113,14 +113,14 @@
       principalName, createTime, checkTime, 
       gatherTime, returnTime, posTime, 
       status, sumPrice, gather, 
-      change, margin, type, note, 
+      changes, margin, type, note,
       exception)
     values (#{id,jdbcType=INTEGER}, #{warehourseid,jdbcType=INTEGER}, #{warehoursename,jdbcType=VARCHAR}, 
       #{clientid,jdbcType=INTEGER}, #{clientname,jdbcType=VARCHAR}, #{principalid,jdbcType=VARCHAR}, 
       #{principalname,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{checktime,jdbcType=VARCHAR}, 
       #{gathertime,jdbcType=VARCHAR}, #{returntime,jdbcType=VARCHAR}, #{postime,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{sumprice,jdbcType=REAL}, #{gather,jdbcType=REAL}, 
-      #{change,jdbcType=REAL}, #{margin,jdbcType=REAL}, #{type,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{changes,jdbcType=REAL}, #{margin,jdbcType=REAL}, #{type,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
       #{exception,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.SaleorderCommon">
@@ -171,8 +171,8 @@
       <if test="gather != null and gather!=''">
         gather,
       </if>
-      <if test="change != null and change!=''">
-        `change`,
+      <if test="changes != null and changes!=''">
+        `changes`,
       </if>
       <if test="margin != null and margin!=''">
         margin,
@@ -233,8 +233,8 @@
       <if test="gather != null and gather!=''">
         #{gather,jdbcType=REAL},
       </if>
-      <if test="change != null and change!=''">
-        #{change,jdbcType=REAL},
+      <if test="changes != null and changes!=''">
+        #{changes,jdbcType=REAL},
       </if>
       <if test="margin != null and margin!=''">
         #{margin,jdbcType=REAL},
@@ -253,9 +253,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.SaleorderCommon">
     update sub_saleorder_common
     <set>
-      <if test="warehourseid != null and warehourseid!=''">
-        warehourseID = #{warehourseid,jdbcType=INTEGER},
-      </if>
+<!--      <if test="warehourseid != null and warehourseid!=''">-->
+<!--        warehourseID = #{warehourseid,jdbcType=INTEGER},-->
+<!--      </if>-->
       <if test="warehoursename != null and warehoursename!=''">
         warehourseName = #{warehoursename,jdbcType=VARCHAR},
       </if>
@@ -295,8 +295,8 @@
       <if test="gather != null and gather!=''">
         gather = #{gather,jdbcType=REAL},
       </if>
-      <if test="change != null and change!=''">
-        `change` = #{change,jdbcType=REAL},
+      <if test="changes != null and changes!=''">
+        `changes` = #{changes,jdbcType=REAL},
       </if>
       <if test="margin != null and margin!=''">
         margin = #{margin,jdbcType=REAL},
@@ -315,7 +315,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.software.domain.SaleorderCommon">
     update sub_saleorder_common
-    set warehourseID = #{warehourseid,jdbcType=INTEGER},
+    set
+--     set warehourseID = #{warehourseid,jdbcType=INTEGER},
       warehourseName = #{warehoursename,jdbcType=VARCHAR},
       clientID = #{clientid,jdbcType=INTEGER},
       clientName = #{clientname,jdbcType=VARCHAR},
@@ -329,7 +330,7 @@
       status = #{status,jdbcType=INTEGER},
       sumPrice = #{sumprice,jdbcType=REAL},
       gather = #{gather,jdbcType=REAL},
-      `change` = #{change,jdbcType=REAL},
+      `changes` = #{changes,jdbcType=REAL},
       margin = #{margin,jdbcType=REAL},
       type = #{type,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},

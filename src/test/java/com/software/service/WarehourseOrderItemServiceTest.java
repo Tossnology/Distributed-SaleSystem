@@ -15,7 +15,7 @@ import com.software.domain.WarehourseOrderItem;
 public class WarehourseOrderItemServiceTest {
 
 	@Autowired
-	private WarehourseOrderItemService service;
+	private WarehourseOrderItemCacheService service;
 	
 	@Test
 	public void test() 

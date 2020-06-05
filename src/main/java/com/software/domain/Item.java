@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     /**
      * 商品ID ID
      */

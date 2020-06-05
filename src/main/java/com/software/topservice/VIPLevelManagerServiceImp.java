@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.software.service.ClientCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class VIPLevelManagerServiceImp implements VIPLevelManagerService
 	private VIPLevelService service;
 	
 	@Autowired
-	private ClientService clientService;
+	private ClientCacheService clientService;
 	
 	@Override
 	public List<VIPLevel> select(VIPLevel record) 

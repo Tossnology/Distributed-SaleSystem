@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class StoreManager {
+import java.io.Serializable;
+
+public class StoreManager implements Serializable {
     
     private String id;
     private String password;

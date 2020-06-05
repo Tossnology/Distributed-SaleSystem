@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,6 @@ import com.software.domain.ItemToPrice;
 import com.software.domain.SaleorderCommon;
 import com.software.domain.SaleorderItem;
 import com.software.domain.WarehourseDetail;
-import com.software.service.ItemToPriceService;
-import com.software.service.SaleorderCommonService;
-import com.software.service.SaleorderItemService;
-import com.software.service.WarehourseDetailService;
 import com.software.trans.ReceiveOrder;
 import com.software.trans.SendOrder;
 
@@ -22,13 +19,13 @@ import com.software.trans.SendOrder;
 public class SaleOrderManagerServiceImp implements SaleOrderManagerService 
 {
 	@Autowired 
-	private SaleorderCommonService commonService;
+	private SaleorderCommonCacheService commonService;
 	@Autowired
-	private SaleorderItemService itemService;
+	private SaleorderItemCacheService itemService;
 	@Autowired
-	private ItemToPriceService priceService;
+	private ItemToPriceCacheService priceService;
 	@Autowired
-	private WarehourseDetailService detailService;
+	private WarehourseDetailCacheService detailService;
 	
 	@Override
 	public List<SendOrder> select(ReceiveOrder order) 

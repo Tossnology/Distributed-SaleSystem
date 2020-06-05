@@ -1,26 +1,22 @@
 package com.software.topservice;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.software.domain.Client;
 import com.software.domain.SaleorderCommon;
-import com.software.domain.WarehourseOrderCommon;
-import com.software.service.ClientService;
-import com.software.service.SaleorderCommonService;
-import com.software.service.WarehourseOrderCommonService;
 
 @Service
 public class ClientManagerServiceImp implements ClientManagerService {
 
 	@Autowired
-	private ClientService service;
+	private ClientCacheService service;
 	
 	@Autowired
-	private SaleorderCommonService saleCommonService;
+	private SaleorderCommonCacheService saleCommonService;
 	
 	
 	@Override

@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class WarehourseOrderCommon {
+import java.io.Serializable;
+
+public class WarehourseOrderCommon implements Serializable {
     /**
      * 查看表ID ID
      */

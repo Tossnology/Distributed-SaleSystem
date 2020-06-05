@@ -1,6 +1,8 @@
 package com.software.domain;
 
-public class VIPLevel 
+import java.io.Serializable;
+
+public class VIPLevel implements Serializable
 {
     private Integer id;
 

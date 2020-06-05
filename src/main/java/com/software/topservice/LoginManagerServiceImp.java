@@ -2,6 +2,7 @@ package com.software.topservice;
 
 import java.util.List;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,23 +10,19 @@ import com.software.domain.GeneralManager;
 import com.software.domain.Staff;
 import com.software.domain.StoreManager;
 import com.software.domain.SubBranchDetailMap;
-import com.software.service.GeneralManagerService;
-import com.software.service.StaffService;
-import com.software.service.StoreManagerService;
-import com.software.service.SubBranchDetailMapService;
 
 @Service
 public class LoginManagerServiceImp implements LoginManagerService 
 {
 
 	@Autowired
-	private GeneralManagerService managerService;
+	private GeneralManagerCacheService managerService;
 	
 	@Autowired
-	private StoreManagerService storeService;
+	private StoreManagerCacheService storeService;
 	
 	@Autowired
-	private StaffService staffService;
+	private StaffCacheService staffService;
 	
 	@Autowired
 	private SubBranchDetailMapService branchService;
@@ -120,7 +117,7 @@ public class LoginManagerServiceImp implements LoginManagerService
 		exampleStaff.setId(id);
 		exampleStaff.setLabel("valid");
 		String hourseid = id.substring(1, 5);
-		exampleStaff.setTablename("sub_staff_"+hourseid);
+		exampleStaff.setTablename("sub_staff");
 		Staff validStaff = null;
 		try 
 		{

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,6 @@ import com.software.domain.SubBranchDetailMap;
 import com.software.domain.WarehourseDetail;
 import com.software.domain.WarehourseOrderCommon;
 import com.software.domain.WarehourseOrderItem;
-import com.software.service.ItemToPriceService;
-import com.software.service.SubBranchDetailMapService;
-import com.software.service.WarehourseDetailService;
-import com.software.service.WarehourseOrderCommonService;
-import com.software.service.WarehourseOrderItemService;
 import com.software.trans.ReceiveWarehourseOrder;
 import com.software.trans.SendWarehourseOrder;
 
@@ -30,16 +26,16 @@ public class WarehourseOrderManagerServiceImp implements WarehourseOrderManagerS
 {
 
 	@Autowired
-	private WarehourseOrderCommonService commonService;
+	private WarehourseOrderCommonCacheService commonService;
 	
 	@Autowired
-	private WarehourseOrderItemService itemService;
+	private WarehourseOrderItemCacheService itemService;
 	
 	@Autowired
-	private WarehourseDetailService detailService;
+	private WarehourseDetailCacheService detailService;
 	
 	@Autowired
-	private ItemToPriceService priceService;
+	private ItemToPriceCacheService priceService;
 	
 	@Autowired
 	private SubBranchDetailMapService mapService;

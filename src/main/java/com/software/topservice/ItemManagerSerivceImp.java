@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.software.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,47 +17,43 @@ import com.software.domain.SaleorderItem;
 import com.software.domain.SubBranchDetailMap;
 import com.software.domain.WarehourseDetail;
 import com.software.domain.WarehourseOrderItem;
-import com.software.service.ItemService;
-import com.software.service.ItemToPriceService;
-import com.software.service.SaleorderItemService;
-import com.software.service.SubBranchDetailMapService;
-import com.software.service.WarehourseDetailService;
-import com.software.service.WarehourseOrderItemService;
 import com.software.trans.ReceiveCargo;
 
 @Service
 public class ItemManagerSerivceImp implements ItemManagerSerivce 
 {
 	@Autowired
-	private ItemService itemService;
+	private ItemCacheService itemService;
 
 	@Autowired
-	private ItemToPriceService priceService;
+	private ItemToPriceCacheService priceService;
 
 	@Autowired
-	private WarehourseDetailService detailService;
+	private WarehourseDetailCacheService detailService;
 	
 	@Autowired
 	private SubBranchDetailMapService branchService;
 	
 	@Autowired
-	private SaleorderItemService saleorderItemSerivce;
+	private SaleorderItemCacheService saleorderItemSerivce;
 	
 	@Autowired
-	private WarehourseOrderItemService warehourseItemService;
+	private WarehourseOrderItemCacheService warehourseItemService;
 	
 	@Override
 	public ReceiveCargo selectByPrimaryKey(ReceiveCargo record) 
 	{
 		String hourseid = record.getTablename();
+		int warehourseId = Integer.parseInt(hourseid);
 		record.fillTablename();
 		Item exampleItem = record.toItem();
 		ItemToPrice examplePrice = record.toPrice();
+		examplePrice.setWarehourseid(warehourseId);
 		Item item = itemService.selectByPrimaryKey(exampleItem);
 		if (item!=null) 
 		{
 			ReceiveCargo cargo = new ReceiveCargo();
-			ItemToPrice price = priceService.selectByPrimaryKey(examplePrice);
+			ItemToPrice price = priceService.select(examplePrice).get(0);
 			cargo.setTablename(hourseid);
 			cargo.initByItem(item);
 			cargo.initByPrice(price);
@@ -116,9 +113,11 @@ public class ItemManagerSerivceImp implements ItemManagerSerivce
 	public List<ReceiveCargo> select(ReceiveCargo record) 
 	{
 		String hourseid = record.getTablename();
+		int warehourseId = Integer.parseInt(hourseid);
 		record.fillTablename();
 		Item exampleItem = record.toItem();
 		ItemToPrice examplePrice = record.toPrice();
+		examplePrice.setWarehourseid(warehourseId);
 		System.out.println("ItemManagerServiceImp: " + exampleItem.toString());
 		List<Item> itemList = itemService.select(exampleItem);
 		Map<Integer, ReceiveCargo> map = new HashMap<Integer, ReceiveCargo>();

@@ -35,12 +35,15 @@
     select 
     <include refid="Base_Column_List" />
     from ${tablename}
-    where itemID = #{itemid,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER} and warehourseID = #{warehourseid,jdbcType=INTEGER}
   </select>
   <select id="select" parameterType="com.software.domain.ItemToPrice" resultMap="BaseResultMap">
 		select *
 		from ${tablename}
 		<where>
+            <if test="id!=null and id!=''">
+              and ID = #{id}
+            </if>
 			<if test="itemid!=null and itemid!=''">
 				and itemID = #{itemid}
 			</if>
@@ -62,7 +65,6 @@
   
   
   <insert id="insert" parameterType="com.software.domain.ItemToPrice">
-
     insert into ${tablename} (itemID, warehourseID, name, retailPrice,
       wholesalePrice, purchasePrice, time, 
       label)
@@ -71,7 +73,6 @@
       #{label,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.software.domain.ItemToPrice">
-
     insert into ${tablename}
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="itemid != null">
