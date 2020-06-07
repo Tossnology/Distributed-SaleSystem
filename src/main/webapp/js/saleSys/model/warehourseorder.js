@@ -21,6 +21,8 @@ defaultWareHourseOrderSetting = {
     sumprice : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendWOrderJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -50,7 +52,7 @@ function queryWarehourseOrderById(tid) {
         id : tid
     }
     param = buildWorderParam(worder);
-    url = "/warehourseOrder/queryById";
+    url = serverAddr +  "/warehourseOrder/queryById";
     console.log("QueryWoederById : ", param);
     $.ajaxSettings.async = false;
     sendWOrderJsonAjax(url, param);
@@ -62,7 +64,7 @@ function queryWarehourseOrder(worder) {
         return;
     }
     param = buildWorderParam(worder);
-    url = "/warehourseOrder/query";
+    url = serverAddr +  "/warehourseOrder/query";
     console.log("Query Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -74,7 +76,7 @@ function insertWarehourseOrder(worder) {
         return;
     }
     param = buildWorderParamList(worder);
-    url = "/warehourseOrder/insert";
+    url = serverAddr +  "/warehourseOrder/insert";
     console.log("Insert Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -87,7 +89,7 @@ function updateWarehourseOrder(worder) {
         return;
     }
     param = buildWorderParamList(worder);
-    url = "/warehourseOrder/update";
+    url = serverAddr +  "/warehourseOrder/update";
     console.log("Update Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -99,7 +101,7 @@ function deleteWarehourseOrder(tid) {
         return;
     }
     param = buildWorderParam({id:tid})
-    url = "/warehourseOrder/delete";
+    url = serverAddr +  "/warehourseOrder/delete";
     console.log("Delete Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -111,7 +113,7 @@ function applyWarehourseOrder(tid) {
         return;
     }
     param = buildWorderParam({id:tid});
-    url = "/warehourseOrder/apply";
+    url = serverAddr +  "/warehourseOrder/apply";
     console.log("Apply Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -123,7 +125,7 @@ passWarehourseOrder = function(worder) {
         return;
     }
     param = buildWorderParam(worder);
-    url = "/warehourseOrder/pass";
+    url = serverAddr +  "/warehourseOrder/pass";
     console.log("Passs Worder : ", param);
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
@@ -133,7 +135,7 @@ function getCargoStockAmount(hourseid) {
     param = JSON.stringify({
     	warehourseid : hourseid.toString()
     });
-    url = "/warehourseOrder/inoutmoney";
+    url = serverAddr +  "/warehourseOrder/inoutmoney";
     $.ajaxSettings.async = false;
     return sendWOrderJsonAjax(url, param);
 }

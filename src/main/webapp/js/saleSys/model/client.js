@@ -18,6 +18,8 @@ var defaultClientSetting =
     pointtoprice : ""
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendClientJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -57,7 +59,7 @@ function queryClientById(tid) {
         + '"type":"",'
         + '"label":"",'
         + '"note":""}';
-    url = "/client/queryById";
+    url = serverAddr +  "/client/queryById";
     console.log("QueryClientById : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -71,7 +73,7 @@ function queryClient(client) {
 
     param = buildClientParam(client);
     console.log("QueryClient : ", param);
-    url = "/client/query";
+    url = serverAddr +  "/client/query";
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
 }
@@ -83,7 +85,7 @@ function insertClient(client) {
     }
 
     param = buildClientParam(client);
-    url = "/client/insert";
+    url = serverAddr +  "/client/insert";
     console.log("InsertClient : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -95,7 +97,7 @@ function deleteClient(client) {
         return null;
     }
     param = buildClientParam(client);
-    url = "/client/delete";
+    url = serverAddr +  "/client/delete";
     console.log("DeleteClient : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -107,7 +109,7 @@ function updateClient(client) {
         return null;
     }
     param = buildClientParam(client);
-    url = "/client/update";
+    url = serverAddr +  "/client/update";
     console.log("UpdataClient : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -158,7 +160,7 @@ function updateMemberRatio(ratio) {
 }
 
 function queryRatioMenu() {
-    url = "/vip/menu";
+    url = serverAddr +  "/vip/menu";
 	param = "";
     console.log("QueryMenu Ratio : ", param);
     var map = new Map();

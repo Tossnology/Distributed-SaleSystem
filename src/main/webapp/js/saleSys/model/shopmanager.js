@@ -11,6 +11,8 @@ defaultShopManagerSetting = {
     label : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendShopManagerJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -38,7 +40,7 @@ function queryManagerById(id) {
     }
     param = 
        '{"id":"' + id + '"}';
-    url = "/shopmanager/queryById";
+    url = serverAddr +  "/shopmanager/queryById";
     $.ajaxSettings.async = false;
     console.log("Query ManagerById : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -59,7 +61,7 @@ function queryManager(manager) {
         + '"email":"' + combineManager.email + '",'
         + '"label":"' + combineManager.label + '",'
         + '"hourseid":"' + combineManager.hourseid + '"}';
-    url = "/shopmanager/query";
+    url = serverAddr +  "/shopmanager/query";
     $.ajaxSettings.async = false;
     console.log("Query Manager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -80,7 +82,7 @@ function insertManager(manager) {
         + '"email":"' + combineManager.email + '",'
         + '"label":"' + combineManager.label + '",'
         + '"hourseid":"' + combineManager.hourseid + '"}';
-    url = "/shopmanager/insert";
+    url = serverAddr +  "/shopmanager/insert";
     $.ajaxSettings.async = false;
     console.log("Insert Manager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -101,7 +103,7 @@ function deleteManager(manager) {
         + '"email":"' + combineManager.email + '",'
         + '"label":"' + combineManager.label + '",'
         + '"hourseid":"' + combineManager.hourseid + '"}';
-    url = "/shopmanager/delete";
+    url = serverAddr +  "/shopmanager/delete";
     $.ajaxSettings.async = false;
     console.log("Delete Manager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -121,7 +123,7 @@ function updateManager(manager) {
     + '"phone":"' + combineClient.phone + '",'
     + '"email":"' + combineClient.email + '",'
     + '"hourseid":"' + combineClient.hourseid + '"}';
-    url = "/shopmanager/update";
+    url = serverAddr +  "/shopmanager/update";
     $.ajaxSettings.async = false;
     console.log("Update Manager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -134,7 +136,7 @@ function queryWareIdByManagerId(id) {
     }
     param = 
        '{"id":"' + id + '"}';
-    url = "/shopmanager/queryWare";
+    url = serverAddr +  "/shopmanager/queryWare";
     $.ajaxSettings.async = false;
     console.log("Query WareIdByManager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -145,7 +147,7 @@ function changeSPwd(manager) {
     '{'
     + '"id":"' + manager.id + '",'
     + '"password":"' + manager.password + '"}';
-    var url = "";
+    var url = serverAddr +  "";
     $.ajaxSettings.async = false;
     console.log("ChangePwd SManager : ", param);
     return sendShopManagerJsonAjax(url, param);
@@ -164,7 +166,7 @@ function assignManager(manager) {
     + '"phone":"' + combineClient.phone + '",'
     + '"email":"' + combineClient.email + '",'
     + '"hourseid":"' + combineClient.hourseid + '"}';
-    url = "/shopmanager/assign";
+    url = serverAddr +  "/shopmanager/assign";
     $.ajaxSettings.async = false;
     console.log("Assign Manager : ", param);
     return sendShopManagerJsonAjax(url, param);

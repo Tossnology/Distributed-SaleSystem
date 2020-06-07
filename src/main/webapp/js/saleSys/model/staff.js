@@ -11,6 +11,8 @@ defaultStaffSetting = {
     label : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -44,7 +46,7 @@ function queryStaffById(tid, thourseid) {
         hourseid : thourseid
     }
     param = buildParam(staff);
-    url = "";
+    url = serverAddr +  "";
     console.log("QueryStaffById : ", param);
     $.ajaxSettings.async = false;
     return sendJsonAjax(url, param);
@@ -57,7 +59,7 @@ function queryStaff(staff) {
     }
 
     param = buildParam(staff);
-    url = "/staff/query";
+    url = serverAddr +  "/staff/query";
     console.log("QueryStaff : ", param);
     $.ajaxSettings.async = false;
     return sendJsonAjax(url, param);
@@ -70,7 +72,7 @@ function insertStaff(staff) {
     }
 
     param = buildParam(staff);
-    url = "/staff/add";
+    url = serverAddr +  "/staff/add";
     console.log("InsertStaff : ", param);
     $.ajaxSettings.async = false;
     return sendJsonAjax(url, param);
@@ -82,7 +84,7 @@ function deleteStaff(staff) {
         return null;
     }
     param = buildParam(staff);
-    url = "/staff/delete";
+    url = serverAddr +  "/staff/delete";
     console.log("DeleteStaff : ", param);
     $.ajaxSettings.async = false;
     return sendJsonAjax(url, param);
@@ -94,7 +96,7 @@ function updateStaff(staff) {
         return null;
     }
     param = buildParam(staff);
-    url = "/staff/update";
+    url = serverAddr +  "/staff/update";
     console.log("UpdateStaff : ", param);
     $.ajaxSettings.async = false;
     return sendJsonAjax(url, param);
@@ -105,7 +107,7 @@ function changeCPwd(staff) {
     '{'
     + '"id":"' + staff.id + '",'
     + '"password":"' + staff.password + '"}';
-    var url = "";
+    var url = serverAddr +  "";
     $.ajaxSettings.async = false;
     console.log("ChangePwd Clerk : ", param);
     return sendJsonAjax(url, param);

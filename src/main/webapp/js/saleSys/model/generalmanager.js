@@ -10,6 +10,8 @@ defaultGManagerSetting = {
     email : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendGeneralJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -37,7 +39,7 @@ function queryGManagerById(id) {
     }
     param = 
        '{"id":"' + id + '"}';
-    url = "/generalmanager/queryById";
+    url = serverAddr +  "/generalmanager/queryById";
     $.ajaxSettings.async = false;
     console.log("Query GManager : ", param);
     return sendGeneralJsonAjax(url, param);
@@ -48,7 +50,7 @@ function updateGManager(manager) {
         return;
     }
     param = buildGManagerParam(manager);
-    url = "";
+    url = serverAddr +  "";
     $.ajaxSettings.async = false;
     console.log("updata Manager : ", param);
     return sendGeneralJsonAjax(url, param);
@@ -59,7 +61,7 @@ function changeGPwd(manager) {
     '{'
     + '"id":"' + manager.id + '",'
     + '"password":"' + manager.password + '"}';
-    var url = "";
+    var url = serverAddr +  "";
     $.ajaxSettings.async = false;
     console.log("ChangePwd Manager : ", param);
     return sendGeneralJsonAjax(url, param);

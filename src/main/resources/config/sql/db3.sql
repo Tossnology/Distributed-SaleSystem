@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 06/06/2020 00:36:02
+ Date: 06/06/2020 23:47:43
 */
 
 SET NAMES utf8mb4;
@@ -3717,6 +3717,11 @@ CREATE TABLE `warehourse`  (
   `label` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '记录仓库' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of warehourse
+-- ----------------------------
+INSERT INTO `warehourse` VALUES (23, 'aaa', 'lkjlk', '2020', 'valid');
 
 -- ----------------------------
 -- Table structure for warehourse_order_common

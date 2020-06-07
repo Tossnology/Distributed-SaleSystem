@@ -9,6 +9,8 @@ defaultStockSetting = {
     time : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendStockJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -39,7 +41,7 @@ function queryStockByWarehourseId(thourseid) {
         hourseid : thourseid 
     }
     param = buildParam(stock);
-    url = "/stock/queryById";
+    url = serverAddr +  "/stock/queryById";
     console.log("QueryStockByWareId : ", param);
     return sendStockJsonAjax(url, param);
 }
@@ -50,7 +52,7 @@ function queryStock(stock) {
         return;
     }
     console.log("qqqqqqqqq", stock);
-    url = '/stock/query'
+    url = serverAddr +  '/stock/query'
     param = buildParam(stock);
     console.log("QueryStock : ", param);
     $.ajaxSettings.async = false;
@@ -64,7 +66,7 @@ function updateStock(stockL) {
         return;
     }
     param = buildParamList(stockL);
-    url = "/stock/update";
+    url = serverAddr +  "/stock/update";
     console.log("UpdataStock : ", param);
     $.ajaxSettings.async = false;
     return sendStockJsonAjax(url, param);

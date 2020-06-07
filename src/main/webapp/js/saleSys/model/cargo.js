@@ -13,6 +13,8 @@ defaultSetting = {
     tablename : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendCargoJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -50,7 +52,7 @@ function sendCargoJsonAjax(url, param) {
         tablename : ttablename
     }
     console.log("c by id : ", cargo);
-    url = "/cargo/queryById";
+    url = serverAddr +  "/cargo/queryById";
     combineCargo = $.extend({},defaultSetting, cargo);
      param = 
     	 '{"id":"' + combineCargo.id +'",'
@@ -84,7 +86,7 @@ function sendCargoJsonAjax(url, param) {
         + '"wholesaleprice":"' + combineCargo.wholesaleprice +'",'
         + '"purchaseprice":"' + combineCargo.purchaseprice +'",'
         + '"tablename":"' + combineCargo.tablename + '"}';
-    url = "/cargo/query";
+    url = serverAddr +  "/cargo/query";
     $.ajaxSettings.async = false;
     console.log("QueryCargo : ", param);
     return sendCargoJsonAjax(url, param);
@@ -106,7 +108,7 @@ function insertCargo(cargo) {
     + '"wholesaleprice":"' + combineCargo.wholesaleprice +'",'
     + '"purchaseprice":"' + combineCargo.purchaseprice +'",'
     + '"tablename":"' + combineCargo.tablename + '"}';
-   url = "/cargo/add";
+   url = serverAddr +  "/cargo/add";
    console.log("InsertCargo : ", param);
   return sendCargoJsonAjax(url, param);
 }
@@ -116,7 +118,7 @@ function deleteCargo(cargo) {
     if (cargo.id == "") {
         return;
     }
-    url = "/cargo/delete";
+    url = serverAddr +  "/cargo/delete";
     combineCargo = $.extend({},defaultSetting, cargo);
     param = 
     '{"id":"' + combineCargo.id +'",'
@@ -149,7 +151,7 @@ function updateCargo(cargo) {
     + '"purchaseprice":"' + combineCargo.purchaseprice +'",'
     + '"tablename":"' + combineCargo.tablename + '"}';
     console.log("UpdataCargo : " , param);
-   url = "/cargo/update";
+   url = serverAddr +  "/cargo/update";
   return sendCargoJsonAjax(url, param);
 }
 

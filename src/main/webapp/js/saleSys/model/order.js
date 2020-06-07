@@ -30,6 +30,8 @@ defaultOrderSetting = {
     note: ''
 };
 
+var serverAddr = "http://localhost:8080";
+
 function sendOrderJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -58,7 +60,7 @@ function queryOrder(order) {
         return;
     }
     param = buildOrderParam(order);
-    url = "/order/query";
+    url = serverAddr +  "/order/query";
     console.log("QueryOrder : " + param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -111,7 +113,7 @@ function insertOrder(orderL) {
         param += (jsonList[i] + ',');
     }
     param += (jsonList[jsonList.length-1] + ']');
-    url = "/order/insert";
+    url = serverAddr +  "/order/insert";
     console.log("InsertOrder : " + param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -127,7 +129,7 @@ function updateOrder(order) {
     }
     param = buildOrderParamList(order);
     console.log("UpdataOrder : " + param);
-    url = "/order/update";
+    url = serverAddr +  "/order/update";
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
 }
@@ -139,7 +141,7 @@ function deleteOrder(order) {
     }
     param = buildOrderParam(order);
     console.log("DeleteOrder : " + param);
-    url = "/order/delete";
+    url = serverAddr +  "/order/delete";
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
 }
@@ -150,7 +152,7 @@ function checkOrder(order) {
         return;
     }
     param = buildOrderParam(order);
-    url = "/order/check";
+    url = serverAddr +  "/order/check";
     console.log("CheckOrder : " + param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -162,7 +164,7 @@ function payOrder(order) {
         return;
     }
     param = buildOrderParam(order);
-    url = "/order/pay";
+    url = serverAddr +  "/order/pay";
     console.log("PayOrder : " + param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -174,7 +176,7 @@ function returnOrder(order) {
         return;
     }
     param = buildOrderParam(order);
-    url = "/order/return";
+    url = serverAddr +  "/order/return";
     console.log("ReturnOrder : " + param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -182,7 +184,7 @@ function returnOrder(order) {
 
 function getSaleAmount(order) {
     param = buildOrderParam(order);
-    url = "";
+    url = serverAddr +  "";
     console.log("GetSaleAmount : ", param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);
@@ -190,7 +192,7 @@ function getSaleAmount(order) {
 
 function getProfitAmount(order) {
     param = buildOrderParam(order);
-    url = "";
+    url = serverAddr +  "";
     console.log("GetProfitAmount : ", param);
     $.ajaxSettings.async = false;
     return sendOrderJsonAjax(url, param);

@@ -11,6 +11,8 @@ defaultPerformanceSetting = {
     endtime: ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendPerJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -33,7 +35,7 @@ function sendPerJsonAjax(url, param) {
 
 function querySMPerformance(per) {
     param = buildPerformanceParam(per);
-    url = "/performance/staffperformance";
+    url = serverAddr +  "/performance/staffperformance";
     console.log("QueryPerformance : ", param);
     $.ajaxSettings.async = false;
     return sendPerJsonAjax(url, param);
@@ -41,7 +43,7 @@ function querySMPerformance(per) {
 
 function queryGMPerformance(per) {
     param = buildPerformanceParam(per);
-    url = "/performance/warehourseperformance";
+    url = serverAddr +  "/performance/warehourseperformance";
     console.log("QueryPerformance : ", param);
     $.ajaxSettings.async = false;
     return sendPerJsonAjax(url, param);

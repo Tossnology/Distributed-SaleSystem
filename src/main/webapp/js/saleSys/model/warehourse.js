@@ -9,6 +9,8 @@ defaultWarehourseSetting = {
     label : ''
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendWarehourseJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -37,7 +39,7 @@ function queryWarehourseById(id) {
     param = buildWarehourseParam({
         id : id
     })
-    url = "/warehourse/queryById";
+    url = serverAddr +  "/warehourse/queryById";
     console.log("Query Warehourse By Id : ", param);
     $.ajaxSettings.async = false;
     return sendWarehourseJsonAjax(url, param);
@@ -49,7 +51,7 @@ function queryWarehourse(warehourse) {
         return null;
     }
     param = buildWarehourseParam(warehourse);
-    url = "/warehourse/query";
+    url = serverAddr +  "/warehourse/query";
     console.log("Query Warehourse : ", param);
     $.ajaxSettings.async = false;
     return sendWarehourseJsonAjax(url, param);
@@ -61,7 +63,7 @@ function insertWarehourse(warehourse) {
         return null;
     }
     param = buildWarehourseParam(warehourse);
-    url = "/warehourse/add";
+    url = serverAddr +  "/warehourse/add";
     console.log("Add Warehourse : ", param);
     $.ajaxSettings.async = false;
     return sendWarehourseJsonAjax(url, param);
@@ -73,7 +75,7 @@ function deleteWarehourse(warehourse) {
         return null;
     }
     param = buildWarehourseParam(warehourse);
-    url = "/warehourse/delete";
+    url = serverAddr +  "/warehourse/delete";
     console.log("Delete Warehourse : ", param);
     $.ajaxSettings.async = false;
     return sendWarehourseJsonAjax(url, param);
@@ -85,7 +87,7 @@ function updateWarehourse(warehourse) {
         return null;
     }
     param = buildWarehourseParam(warehourse);
-    url = "/warehourse/update";
+    url = serverAddr +  "/warehourse/update";
     console.log("Update Warehourse : ", param);
     $.ajaxSettings.async = false;
     return sendWarehourseJsonAjax(url, param);
@@ -94,7 +96,7 @@ function updateWarehourse(warehourse) {
 
 //请求id与仓库映射
 function queryWarehourseMenu() {
-	url = "/warehourse/typemenu";
+	url = serverAddr +  "/warehourse/typemenu";
 	param = "";
     console.log("QueryMenu Warehourse : ", param);
     $.ajaxSettings.async = false;

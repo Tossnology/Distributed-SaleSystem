@@ -8,6 +8,8 @@ defaultProviderSetting = {
     time : ""
 }
 
+var serverAddr = "http://localhost:8080";
+
 function sendProviderJsonAjax(url, param) {
     var tempdata;
     $.ajax({
@@ -37,7 +39,7 @@ function queryProviderById(tid) {
         id : tid
     }
     param = buildProviderParam(provider);
-    url = "/provider/queryById";
+    url = serverAddr +  "/provider/queryById";
     console.log("QueryProviderById : ", param);
     $.ajaxSettings.async = false;
     return sendProviderJsonAjax(url, param);
@@ -50,7 +52,7 @@ function queryProvider(provider) {
     }
     param = buildProviderParam(provider);
     console.log("QueryProvider : ", param);
-    url = "/provider/query";
+    url = serverAddr +  "/provider/query";
     $.ajaxSettings.async = false;
     return sendProviderJsonAjax(url, param);
 }
@@ -62,7 +64,7 @@ function insertProvider(provider) {
     }
 
     param = buildProviderParam(provider);
-    url = "/provider/insert";
+    url = serverAddr +  "/provider/insert";
     console.log("InsertProvider : ", param);
     $.ajaxSettings.async = false;
     return sendProviderJsonAjax(url, param);
@@ -74,7 +76,7 @@ function deleteProvider(provider) {
         return null;
     }
     param = buildProviderParam(provider);
-    url = "/provider/delete";
+    url = serverAddr +  "/provider/delete";
     console.log("DeleteProvider : ", param);
     $.ajaxSettings.async = false;
     return sendProviderJsonAjax(url, param);
@@ -86,7 +88,7 @@ function updateProvider(provider) {
         return null;
     }
     param = buildProviderParam(provider);
-    url = "/provider/update";
+    url = serverAddr +  "/provider/update";
     console.log("UpdataProvider : ", param);
     $.ajaxSettings.async = false;
     return sendProviderJsonAjax(url, param);
@@ -94,7 +96,7 @@ function updateProvider(provider) {
 
 //请求id与供应商映射
 function queryProviderMenu() {
-	url = "/provider/providermenu";
+	url = serverAddr +  "/provider/providermenu";
 	param = "";
     console.log("QueryMenu Provider : ", param);
     $.ajaxSettings.async = false;
