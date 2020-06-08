@@ -9,7 +9,7 @@ defaultStockSetting = {
     time : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendStockJsonAjax(url, param) {
     var tempdata;

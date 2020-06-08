@@ -10,7 +10,7 @@ defaultGManagerSetting = {
     email : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendGeneralJsonAjax(url, param) {
     var tempdata;

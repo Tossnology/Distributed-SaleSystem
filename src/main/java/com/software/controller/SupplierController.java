@@ -17,7 +17,7 @@ import com.software.topservice.SupplierManagerService;
 import com.software.topservice.SupplierManagerServiceImp;
 
 @RestController
-@RequestMapping("/provider")
+@RequestMapping("api/provider")
 public class SupplierController {
 	
 	@Autowired

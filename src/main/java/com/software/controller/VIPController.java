@@ -17,7 +17,7 @@ import com.software.topservice.VIPLevelManagerService;
 import com.software.trans.ReceiveClient;
 
 @RestController
-@RequestMapping("/vip")
+@RequestMapping("api/vip")
 public class VIPController {
 
 	@Autowired

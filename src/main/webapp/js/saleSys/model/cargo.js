@@ -13,7 +13,7 @@ defaultSetting = {
     tablename : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendCargoJsonAjax(url, param) {
     var tempdata;

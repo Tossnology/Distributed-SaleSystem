@@ -18,7 +18,7 @@ import com.software.topservice.WarehourseManagerService;
 
 
 @RestController
-@RequestMapping("/warehourse")
+@RequestMapping("api/warehourse")
 public class WarehourseController 
 {
 	@Autowired

@@ -16,7 +16,7 @@ import com.software.topservice.PerformanceManagerService;
 import com.software.trans.WarehoursePerformance;
 
 @RestController
-@RequestMapping("/performance")
+@RequestMapping("api/performance")
 public class PerformanceController 
 {
 	@Autowired

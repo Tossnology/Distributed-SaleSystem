@@ -30,7 +30,7 @@ defaultOrderSetting = {
     note: ''
 };
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendOrderJsonAjax(url, param) {
     var tempdata;

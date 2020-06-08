@@ -14,7 +14,7 @@ import com.software.domain.Staff;
 import com.software.topservice.StaffManagerService;
 
 @RestController
-@RequestMapping("/staff")
+@RequestMapping("api/staff")
 public class StaffController {
 	@Autowired
 	private StaffManagerService service;

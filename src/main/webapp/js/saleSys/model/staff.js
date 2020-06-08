@@ -11,7 +11,7 @@ defaultStaffSetting = {
     label : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendJsonAjax(url, param) {
     var tempdata;

@@ -28,7 +28,7 @@ import com.software.topservice.LoginManagerService;
 import com.software.trans.ReceiveUser;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("api/login")
 public class LoginController 
 {
 	@Autowired

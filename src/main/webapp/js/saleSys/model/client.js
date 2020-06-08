@@ -18,7 +18,7 @@ var defaultClientSetting =
     pointtoprice : ""
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendClientJsonAjax(url, param) {
     var tempdata;

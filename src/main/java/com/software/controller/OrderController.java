@@ -18,7 +18,7 @@ import com.software.trans.ReceiveOrder;
 import com.software.trans.SendOrder;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("api/order")
 public class OrderController 
 {
 	@Autowired

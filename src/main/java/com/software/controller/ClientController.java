@@ -15,7 +15,7 @@ import com.software.trans.ReceiveClient;
 
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("api/client")
 public class ClientController 
 {
 	

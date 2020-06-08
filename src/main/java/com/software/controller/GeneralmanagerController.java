@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.software.domain.GeneralManager;
 
 @RestController
-@RequestMapping("/generalmanager")
+@RequestMapping("api/generalmanager")
 public class GeneralmanagerController {
 	@RequestMapping("/queryById")
 	public GeneralManager queryGManagerById(@RequestBody Map<String, String> param){

@@ -20,7 +20,7 @@ function fillTopInfo() {
 function logout() {
     if(confirm("确定退出登录？")) {
 //        cleanCookie();
-        top.location.href = "http://localhost:8080/" + "login.html";
+        top.location.href = "../../../login.html";
     }
 }
 

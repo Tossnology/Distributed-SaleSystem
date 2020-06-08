@@ -17,7 +17,7 @@ import com.software.trans.ReceiveCargo;
 import com.software.trans.SendCargo2Andr;
 
 @RestController
-@RequestMapping("/cargo")
+@RequestMapping("api/cargo")
 public class CargoController 
 {
 	

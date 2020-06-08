@@ -18,7 +18,7 @@ import com.software.trans.ReceiveCargo;
 import com.software.trans.Stock;
 
 @RestController
-@RequestMapping("/stock")
+@RequestMapping("api/stock")
 public class StockController 
 {
 	@Autowired

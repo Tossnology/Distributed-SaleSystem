@@ -14,7 +14,7 @@ import com.software.domain.StoreManager;
 import com.software.topservice.TopStoreManagerService;
 
 @RestController
-@RequestMapping("/shopmanager")
+@RequestMapping("api/shopmanager")
 public class ShopmanagerController 
 {
 	@Autowired

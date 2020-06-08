@@ -18,7 +18,7 @@ import com.software.trans.SendWarehourseOrder;
 import com.software.trans.Stock;
 
 @RestController
-@RequestMapping("/warehourseOrder")
+@RequestMapping("api/warehourseOrder")
 public class WarehourseOrderController 
 {
 	@Autowired
