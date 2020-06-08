@@ -13,7 +13,7 @@ $("#login-btn").click(
         var account = $("#account").val();
         var password = $("#password").val();
         var param;
-        var url = "/login/"; //TODO waiturl
+        var url = serverAddr + "/login/"; //TODO waiturl
         var destination = "" //网页跳转
         var type = $('#type').val();
 
