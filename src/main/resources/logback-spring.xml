@@ -23,7 +23,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>F:\logs\info/info.%d.log</fileNamePattern>
+            <fileNamePattern>/var/log/sale/info/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -40,7 +40,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>F:\logs\error/error.%d.log</fileNamePattern>
+            <fileNamePattern>/var/log/sale/error/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
