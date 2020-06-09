@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.software.topservice.SaleOrderManagerService;
 import com.software.trans.ReceiveOrder;
 import com.software.trans.SendOrder;
 
+@Slf4j
 @RestController
 @RequestMapping("/order")
 public class OrderController 
@@ -74,6 +76,7 @@ public class OrderController
 	{
 		System.out.println(param.toString());
 		List<SendOrder> result = service.select(param);
+		log.info(LoginController.currentUserId+" "+"queryOrder : "+param);
 		return result;//返回查找结果
 	}
 	
@@ -97,6 +100,7 @@ public class OrderController
 		String infovalue = service.insert(param);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+		log.info(LoginController.currentUserId+" "+"addOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 	
@@ -107,6 +111,7 @@ public class OrderController
 		String infovalue = service.update(param);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+		log.info(LoginController.currentUserId+" "+"updateOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 	
@@ -115,6 +120,7 @@ public class OrderController
 		service.delete(param);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "删除成功");
+		log.info(LoginController.currentUserId+" "+"deleteOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 	
@@ -130,6 +136,7 @@ public class OrderController
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
 		System.out.println("11111"+result);
+		log.info(LoginController.currentUserId+" "+"checkOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 	
@@ -145,6 +152,7 @@ public class OrderController
 		
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "收款成功");
+		log.info(LoginController.currentUserId+" "+"payOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 	
@@ -160,6 +168,7 @@ public class OrderController
 		
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "退货成功");
+		log.info(LoginController.currentUserId+" "+"returnOrder : "+param);
 		return result;//返回成功/失败信息
 	}
 }

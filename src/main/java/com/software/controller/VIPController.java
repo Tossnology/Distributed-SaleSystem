@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.software.topservice.ClientManagerService;
 import com.software.topservice.VIPLevelManagerService;
 import com.software.trans.ReceiveClient;
 
+@Slf4j
 @RestController
 @RequestMapping("/vip")
 public class VIPController {
@@ -30,6 +32,8 @@ public class VIPController {
 	@RequestMapping("/updatevip")
 	public Map<String, String> updatevip(@RequestBody Map<String, String> param)
 	{
+		log.info(LoginController.currentUserId+" "+"updatevip : "+param);
+
 		Map<String, String> result = new HashMap<String, String>();
 
 		try
@@ -69,6 +73,8 @@ public class VIPController {
 	@RequestMapping("/cancel")
 	public Map<String, String> cancelAuthority(@RequestBody Map<String, String> param)
 	{
+		log.info(LoginController.currentUserId+" "+"cancelAuthority : "+param);
+
 		Client client = new Client();
 		client.setId(Integer.valueOf(param.get("id")));
 		client.setAuthority("-1");
@@ -82,6 +88,8 @@ public class VIPController {
 	@RequestMapping("/updateclientinvip")
 	public Map<String, String> updateclient(@RequestBody Map<String, String> param)
 	{
+		log.info(LoginController.currentUserId+" "+"updateclient : "+param);
+
 		String clientid = param.get("id");
 		String vipid = param.get("authority");
 		String point = param.get("point");
@@ -99,6 +107,7 @@ public class VIPController {
 
 	@RequestMapping("/query")
 	public List<com.software.domain.Client> queryClient(@RequestBody ReceiveClient param){
+		log.info(LoginController.currentUserId+" "+"queryClient : "+param);
 		com.software.domain.Client client = new com.software.domain.Client();
 		if (!param.getId().equals("")) 
 		{

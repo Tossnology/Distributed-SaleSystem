@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.software.trans.ReceiveWarehourseOrder;
 import com.software.trans.SendWarehourseOrder;
 import com.software.trans.Stock;
 
+@Slf4j
 @RestController
 @RequestMapping("/warehourseOrder")
 public class WarehourseOrderController 
@@ -26,18 +28,21 @@ public class WarehourseOrderController
 	
 	@RequestMapping("/queryById")
 	public SendWarehourseOrder queryWarehourseOrderById(@RequestBody ReceiveWarehourseOrder param){
+		log.info(LoginController.currentUserId+" "+"queryWarehourseOrderById : "+param);
 		SendWarehourseOrder result = service.select(param).get(0);
 		return result;
 	}
 	
 	@RequestMapping("/query")
 	public List<SendWarehourseOrder> queryWarehourseOrder(@RequestBody ReceiveWarehourseOrder param){
+		log.info(LoginController.currentUserId+" "+"queryWarehourseOrder : "+param);
 		List<SendWarehourseOrder> result = service.select(param);
 		return result;
 	}
 	
 	@RequestMapping("/insert")
 	public Map<String, String> insertWarehourseOrder(@RequestBody List<ReceiveWarehourseOrder> param){
+		log.info(LoginController.currentUserId+" "+"insertWarehourseOrder : "+param);
 		Map<String, String> result = new HashMap<String, String>();
 		if(param.get(0).getSourceid().equals(param.get(0).getTargetid())){
 			result.put("info", "不能我发我自己");
@@ -60,6 +65,7 @@ public class WarehourseOrderController
 	
 	@RequestMapping("/update")
 	public Map<String, String> updateWarehourseOrder(@RequestBody List<ReceiveWarehourseOrder> param){
+		log.info(LoginController.currentUserId+" "+"updateWarehourseOrder : "+param);
 		Map<String, String> result = new HashMap<String, String>();
 		
 		if (param.size()==0) 
@@ -75,12 +81,14 @@ public class WarehourseOrderController
 	
 	@RequestMapping("/delete")
 	public String deleteWarehourseOrder(@RequestBody ReceiveWarehourseOrder param){
+		log.info(LoginController.currentUserId+" "+"deleteWarehourseOrder : "+param);
 		service.delete(param);
 		return "success";
 	}
 	
 	@RequestMapping("/apply")
 	public Map<String, String> applyWarehourseOrder(@RequestBody ReceiveWarehourseOrder param){
+		log.info(LoginController.currentUserId+" "+"applyWarehourseOrder : "+param);
 		// update
 		param.setStatus(2+"");
 		
@@ -94,6 +102,7 @@ public class WarehourseOrderController
 	@RequestMapping("/pass")
 	public Map<String, String> passWarehourseOrder(@RequestBody ReceiveWarehourseOrder param)
 	{
+		log.info(LoginController.currentUserId+" "+"passWarehourseOrder : "+param);
 		// check
 		param.setStatus(4+"");
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -111,7 +120,7 @@ public class WarehourseOrderController
 	@RequestMapping("/inoutmoney")
 	public Map<String, String> inoutMoney(@RequestBody Map<String, String> param)
 	{
-		
+		log.info(LoginController.currentUserId+" "+"inoutMoney : "+param);
 		Integer warehourseid = Integer.valueOf(param.get("warehourseid"));
 		
 		return service.inoutMoney(warehourseid);

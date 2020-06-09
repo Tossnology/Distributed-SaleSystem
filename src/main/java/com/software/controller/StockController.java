@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.software.topservice.StockManagerService;
 import com.software.trans.ReceiveCargo;
 import com.software.trans.Stock;
 
+@Slf4j
 @RestController
 @RequestMapping("/stock")
 public class StockController 
@@ -31,6 +33,7 @@ public class StockController
 	public List<Stock> queryStockByWarehourseId(@RequestBody Stock param)
 	{
 		List<Stock> result = service.select(param);
+		log.info(LoginController.currentUserId+" "+"queryStockByWarehourseId : "+param);
 		return result;
 	}
 	
@@ -50,6 +53,7 @@ public class StockController
 			s.setOverstock(String.valueOf(Integer.valueOf(s.getItemnum())*Double.valueOf(tmp2.getPurchaseprice())));
 			System.out.println(s.getOverstock());
 		}
+		log.info(LoginController.currentUserId+" "+"queryStock : "+param);
 		return result;
 	}
 	
@@ -65,6 +69,7 @@ public class StockController
 		service.update(param);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "更新成功");
+		log.info(LoginController.currentUserId+" "+"updateStock : "+param);
 		return result;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.software.topservice.ItemManagerSerivce;
 import com.software.trans.ReceiveCargo;
 import com.software.trans.SendCargo2Andr;
 
+@Slf4j
 @RestController
 @RequestMapping("/cargo")
 public class CargoController 
@@ -29,6 +31,7 @@ public class CargoController
 		System.out.println("hhh"+param.toString());
 		param.setLabel("valid");
 		ReceiveCargo result = service.selectByPrimaryKey(param);
+		log.info(LoginController.currentUserId+" "+"queryCargo : "+param);
 		return result;
 	}
 	
@@ -44,6 +47,7 @@ public class CargoController
 //		for(ReceiveCargo r:result){
 //			System.out.println(r.toString());
 //		}
+		log.info(LoginController.currentUserId+" "+"queryCargo : "+param);
 		return result;
 	}
 	
@@ -58,6 +62,7 @@ public class CargoController
 		
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "添加成功");
+		log.info(LoginController.currentUserId+" "+"addCargo : "+param);
 		return result;
 	}
 	
@@ -73,6 +78,7 @@ public class CargoController
 		System.out.println(infovalue);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+		log.info(LoginController.currentUserId+" "+"deleteCargo : "+param);
 		return result;
 	}
 	
@@ -86,6 +92,7 @@ public class CargoController
 		
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", "更新成功");
+		log.info(LoginController.currentUserId+" "+"updateCargo : "+param);
 		return result;
 	}
 	

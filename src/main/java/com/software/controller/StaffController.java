@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.print.DocFlavor.STRING;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.software.domain.Staff;
 import com.software.topservice.StaffManagerService;
 
+@Slf4j
 @RestController
 @RequestMapping("/staff")
 public class StaffController {
@@ -46,6 +48,9 @@ public class StaffController {
 		
 		
 		Staff result = service.selectByPrimaryKey(staff);
+
+		log.info(LoginController.currentUserId+" "+"queryStaffById : "+param);
+
 		return result;
 	}
 	
@@ -74,6 +79,9 @@ public class StaffController {
 		staff.setLabel("valid");
 		
 		List<Staff> result = service.select(staff);
+
+		log.info(LoginController.currentUserId+" "+"queryStaff : "+param);
+
 		return result;
 	}
 	
@@ -113,6 +121,9 @@ public class StaffController {
 		staff.setLabel("valid");
 		
 		service.insertSelective(staff);
+
+		log.info(LoginController.currentUserId+" "+"addStaff : "+param);
+
 		return "success";
 	}
 	
@@ -138,6 +149,9 @@ public class StaffController {
 		staff.setEmail(email);
 		staff.setLabel("invalid");
 		service.updateByPrimaryKeySelective(staff);
+
+		log.info(LoginController.currentUserId+" "+"deleteStaff : "+param);
+
 		return "success";
 	}
 	
@@ -163,6 +177,9 @@ public class StaffController {
 		staff.setEmail(email);
 		staff.setLabel("valid");
 		service.updateByPrimaryKeySelective(staff);
+
+		log.info(LoginController.currentUserId+" "+"updateStaff : "+param);
+
 		return "success";
 	}
 	

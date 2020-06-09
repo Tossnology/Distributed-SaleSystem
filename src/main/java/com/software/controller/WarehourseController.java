@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import com.software.domain.Warehourse;
 import com.software.service.WarehourseService;
 import com.software.topservice.WarehourseManagerService;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/warehourse")
 public class WarehourseController 
@@ -26,6 +27,7 @@ public class WarehourseController
 	
 	@RequestMapping("/queryById")
 	public Warehourse queryWarehourseById(@RequestBody Map<String, String> param){
+		log.info(LoginController.currentUserId+" "+"queryWarehourseById : "+param);
 		Warehourse warehourse = new Warehourse();
 		warehourse.setId(Integer.valueOf(param.get("id")));
 		warehourse.setName(param.get("name"));
@@ -37,6 +39,7 @@ public class WarehourseController
 	
 	@RequestMapping("/query")
 	public List<Warehourse> queryWarehourse(@RequestBody Map<String, String> param){
+		log.info(LoginController.currentUserId+" "+"queryWarehourse : "+param);
 		Warehourse warehourse = new Warehourse();
 		if (!(param.get("id").equals(""))) {
 			warehourse.setId(Integer.valueOf(param.get("id")));
@@ -50,6 +53,7 @@ public class WarehourseController
 	
 	@RequestMapping("/add")
 	public Map<String, String> addWarehourse(@RequestBody Map<String, String> param){
+		log.info(LoginController.currentUserId+" "+"addWarehourse : "+param);
 		Warehourse warehourse = new Warehourse();
 		if (!(param.get("id").equals(""))) {
 			warehourse.setId(Integer.valueOf(param.get("id")));
@@ -69,6 +73,7 @@ public class WarehourseController
 	
 	@RequestMapping("/delete")
 	public Map<String, String> deleteWarehourse(@RequestBody Map<String, String> param){
+		log.info(LoginController.currentUserId+" "+"deleteWarehourse : "+param);
 		Warehourse warehourse = new Warehourse();
 		if (!(param.get("id").equals(""))) {
 			warehourse.setId(Integer.valueOf(param.get("id")));
@@ -88,6 +93,7 @@ public class WarehourseController
 	
 	@RequestMapping("/update")
 	public Map<String, String> updateWarehourse(@RequestBody Map<String, String> param){
+		log.info(LoginController.currentUserId+" "+"updateWarehourse : "+param);
 		Warehourse warehourse = new Warehourse();
 		if (!(param.get("id").equals(""))) {
 			warehourse.setId(Integer.valueOf(param.get("id")));

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.software.topservice.ClientManagerService;
 import com.software.trans.ReceiveClient;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/client")
 public class ClientController 
@@ -28,6 +29,7 @@ public class ClientController
 		com.software.domain.Client result = new com.software.domain.Client();
 		result.setId(Integer.valueOf(id));
 		result.setLabel("valid");
+		log.info(LoginController.currentUserId+" "+"queryClient : "+param);
 		return service.selectByPrimaryKey(result);
 	}
 	
@@ -46,6 +48,7 @@ public class ClientController
 		client.setType(param.getType());
 		client.setLabel("valid");
 		List<com.software.domain.Client> result = service.select(client);
+		log.info(LoginController.currentUserId+" "+"queryClient : "+param);
 		return result;
 	}
 	
@@ -67,6 +70,7 @@ public class ClientController
 
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "添加成功");
+		log.info(LoginController.currentUserId+" "+"addClient : "+param);
 		return result;
 	}
 	
@@ -81,6 +85,7 @@ public class ClientController
 
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "删除成功");
+		log.info(LoginController.currentUserId+" "+"deleteClient : "+param);
 		return result;
 	}
 	
@@ -115,6 +120,7 @@ public class ClientController
 		
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "更新成功");
+		log.info(LoginController.currentUserId+" "+"updateClient : "+param);
 		return result;
 	}
 }

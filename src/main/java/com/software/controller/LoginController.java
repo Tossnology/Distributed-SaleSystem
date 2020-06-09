@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.print.attribute.HashAttributeSet;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import com.software.service.SubBranchDetailMapService;
 import com.software.topservice.LoginManagerService;
 import com.software.trans.ReceiveUser;
 
+@Slf4j
 @RestController
 @RequestMapping("/login")
 public class LoginController 
@@ -35,6 +37,8 @@ public class LoginController
 	private LoginManagerService loginService;
 	
 	private Map<String, SubBranchDetailMap> mp = new HashMap<String, SubBranchDetailMap>();
+
+	public static String currentUserId;
 	
 	@RequestMapping(value = {"/administrator","/teacher","/student"})
 	public String login(@RequestBody ReceiveUser param)
@@ -47,6 +51,8 @@ public class LoginController
     	if(map.getFlag().equals("true"))
     	{
 			mp.put(id, map);
+			currentUserId = "["+authority+"]"+id;
+			log.info(currentUserId+" "+"login successful");
 		}
 		return map.getFlag();
 	}

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.software.domain.Supplier;
 import com.software.topservice.SupplierManagerService;
 import com.software.topservice.SupplierManagerServiceImp;
 
+@Slf4j
 @RestController
 @RequestMapping("/provider")
 public class SupplierController {
@@ -30,7 +32,7 @@ public class SupplierController {
 		receive.setLabel("valid");
 		
 		Supplier result = service.selectByPrimaryKey(receive);
-		
+		log.info(LoginController.currentUserId+" "+"queryProviderById : "+param);
 		return result;
 	}
 	
@@ -41,7 +43,7 @@ public class SupplierController {
 		receive.setLabel("valid");
 		
 		List<Supplier> result = service.select(receive);
-		
+		log.info(LoginController.currentUserId+" "+"queryProvider : "+param);
 		return result;
 	}
 	
@@ -59,6 +61,8 @@ public class SupplierController {
 		
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "添加成功");
+
+		log.info(LoginController.currentUserId+" "+"insertProvider : "+param);
 		return result;
 	}
 	
@@ -76,6 +80,8 @@ public class SupplierController {
 		
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "删除成功");
+
+		log.info(LoginController.currentUserId+" "+"deleteProvider : "+param);
 		return result;
 	}
 	
@@ -93,6 +99,8 @@ public class SupplierController {
 		
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("info", "修改成功");
+
+		log.info(LoginController.currentUserId+" "+"updateProvider : "+param);
 		return result;
 	}
 	

@@ -3,6 +3,7 @@ package com.software.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.software.service.WarehourseService;
 import com.software.topservice.PerformanceManagerService;
 import com.software.trans.WarehoursePerformance;
 
+@Slf4j
 @RestController
 @RequestMapping("/performance")
 public class PerformanceController 
@@ -55,6 +57,7 @@ public class PerformanceController
 			performance.setPrincipalname(resultMap.getPrincipalname());
 			result.add(performanceService.calWarehoursePerformance(performance));
 		}
+		log.info(LoginController.currentUserId+" "+"queryWarehoursePerformance : "+performance);
 		return result;
 	}
 	
@@ -63,6 +66,7 @@ public class PerformanceController
 	public List<WarehoursePerformance> queryStaffPerformance(@RequestBody WarehoursePerformance performance)
 	{
 		System.out.println(performance);
+		log.info(LoginController.currentUserId+" "+"queryStaffPerformance : "+performance);
 		return performanceService.calStaffPerformance(performance);
 	}
 

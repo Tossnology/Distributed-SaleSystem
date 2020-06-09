@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.software.domain.StoreManager;
 import com.software.topservice.TopStoreManagerService;
 
+@Slf4j
 @RestController
 @RequestMapping("/shopmanager")
 public class ShopmanagerController 
@@ -45,6 +47,7 @@ public class ShopmanagerController
 			return null;
 		}
 		StoreManager result = list.get(0);
+		log.info(LoginController.currentUserId+" "+"queryManager : "+param);
 		return result;
 	}
 	
@@ -70,6 +73,7 @@ public class ShopmanagerController
 
 		
 		List<StoreManager> result = service.select(storemanager);
+		log.info(LoginController.currentUserId+" "+"queryManager : "+param);
 		return result;
 	}
 	
@@ -109,6 +113,8 @@ public class ShopmanagerController
 		}
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+
+		log.info(LoginController.currentUserId+" "+"addManager : "+param);
 		return result;
 	
 	}
@@ -136,6 +142,7 @@ public class ShopmanagerController
 		System.out.println("i am here");
 		service.updateByPrimaryKeySelective(storemanager);
 		service.disassign(storemanager);
+		log.info(LoginController.currentUserId+" "+"deleteManager : "+param);
 		return "success";
 	}
 	
@@ -171,6 +178,7 @@ public class ShopmanagerController
 		}
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+		log.info(LoginController.currentUserId+" "+"updateManager : "+param);
 		return result;
 	}
 	
@@ -181,6 +189,7 @@ public class ShopmanagerController
 		storemanager.setId(id);
 		
 		StoreManager result = null;
+		log.info(LoginController.currentUserId+" "+"queryWareIdByManagerId : "+param);
 		return result.getHourseid();
 	}
 	
@@ -207,6 +216,7 @@ public class ShopmanagerController
 		}
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("info", infovalue);
+		log.info(LoginController.currentUserId+" "+"assign : "+param);
 		return result;
 	}
 }

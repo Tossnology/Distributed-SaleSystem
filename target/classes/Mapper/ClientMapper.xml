@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.software.dao.ClientMapper">
+  <resultMap id="BaseResultMap" type="com.software.domain.Client">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="authority" jdbcType="VARCHAR" property="authority" />
+    <result column="remain" jdbcType="REAL" property="remain" />
+    <result column="debt" jdbcType="REAL" property="debt" />
+    <result column="point" jdbcType="REAL" property="point" />
+    <result column="priceToPoint" jdbcType="REAL" property="pricetopoint" />
+    <result column="pointToPrice" jdbcType="REAL" property="pointtoprice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, name, gender, phone, email, note, type, label, authority, remain, debt, point, 
+    priceToPoint, pointToPrice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.software.domain.Client" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from client
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="select" parameterType="com.software.domain.Client" resultMap="BaseResultMap">
+		select *
+		from client
+		<where>
+			<if test="id!=null and id!=''">
+				and ID = #{id}
+			</if>
+			<if test="name!=null and name!=''">
+				and name = #{name}
+			</if>
+			<if test="phone!=null and phone!=''">
+				and phone = #{phone}
+			</if>
+			<if test="email!=null and email!=''">
+				and email = #{email}
+			</if>
+			<if test="type!=null and type!=''">
+				and type = #{type}
+			</if>
+			<if test="note!=null and note!=''">
+				and note = #{note}
+			</if>
+			<if test="label!=null and label!=''">
+				and label = #{label}
+			</if>
+			<if test="authority!=null and authority!=''">
+				and authority = #{authority}
+			</if>
+		</where>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="com.software.domain.Client">
+    delete from client
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.software.domain.Client">
+    insert into client (ID, name, gender, 
+      phone, email, note, 
+      type, label, authority, 
+      remain, debt, point, priceToPoint, 
+      pointToPrice)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{authority,jdbcType=VARCHAR}, 
+      #{remain,jdbcType=REAL}, #{debt,jdbcType=REAL}, #{point,jdbcType=REAL}, #{pricetopoint,jdbcType=REAL}, 
+      #{pointtoprice,jdbcType=REAL})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.software.domain.Client">
+    insert into client
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id!=''">
+        ID,
+      </if>
+      <if test="name != null and name !=''">
+        name,
+      </if>
+      <if test="gender != null and gender !=''">
+        gender,
+      </if>
+      <if test="phone != null and phone !=''">
+        phone,
+      </if>
+      <if test="email != null and email!=''">
+        email,
+      </if>
+      <if test="note != null and note !=''">
+        note,
+      </if>
+      <if test="type != null and type !=''">
+        type,
+      </if>
+      <if test="label != null and label !=''">
+        label,
+      </if>
+      <if test="authority != null and authority!=''">
+        authority,
+      </if>
+      <if test="remain != null and remain!=''">
+        remain,
+      </if>
+      <if test="debt != null and debt!=''">
+        debt,
+      </if>
+      <if test="point != null and point!=''">
+        point,
+      </if>
+      <if test="pricetopoint != null and pricetopoint!=''">
+        priceToPoint,
+      </if>
+      <if test="pointtoprice != null and pointtoprice!=''">
+        pointToPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id!=''">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null and name!=''">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender!=''">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !=''">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email !=''">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null and note !=''">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type !=''">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label!=''">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="authority != null and authority!=''">
+        #{authority,jdbcType=VARCHAR},
+      </if>
+      <if test="remain != null and remain!=''">
+        #{remain,jdbcType=REAL},
+      </if>
+      <if test="debt != null and debt!=''">
+        #{debt,jdbcType=REAL},
+      </if>
+      <if test="point != null and point!=''">
+        #{point,jdbcType=REAL},
+      </if>
+      <if test="pricetopoint != null and pricetopoint!=''">
+        #{pricetopoint,jdbcType=REAL},
+      </if>
+      <if test="pointtoprice != null and pointtoprice!=''">
+        #{pointtoprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.software.domain.Client">
+    update client
+    <set>
+      <if test="name != null and name!=''">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender!=''">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone!=''">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email!=''">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null and note!=''">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type!=''">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label!=''">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="authority != null and authority !=''">
+        authority = #{authority,jdbcType=VARCHAR},
+      </if>
+      <if test="remain != null">
+        remain = #{remain,jdbcType=REAL},
+      </if>
+      <if test="debt != null">
+        debt = #{debt,jdbcType=REAL},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=REAL},
+      </if>
+      <if test="pricetopoint != null">
+        priceToPoint = #{pricetopoint,jdbcType=REAL},
+      </if>
+      <if test="pointtoprice != null">
+        pointToPrice = #{pointtoprice,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.software.domain.Client">
+    update client
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      authority = #{authority,jdbcType=VARCHAR},
+      remain = #{remain,jdbcType=REAL},
+      debt = #{debt,jdbcType=REAL},
+      point = #{point,jdbcType=REAL},
+      priceToPoint = #{pricetopoint,jdbcType=REAL},
+      pointToPrice = #{pointtoprice,jdbcType=REAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

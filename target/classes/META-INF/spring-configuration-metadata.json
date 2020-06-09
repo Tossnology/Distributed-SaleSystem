@@ -1,0 +1,61 @@
+{
+  "groups": [
+    {
+      "name": "redistodb",
+      "type": "com.software.util.RedisToDBUtil",
+      "sourceType": "com.software.util.RedisToDBUtil"
+    },
+    {
+      "name": "redisutil",
+      "type": "com.software.util.RedisUtil",
+      "sourceType": "com.software.util.RedisUtil"
+    }
+  ],
+  "properties": [
+    {
+      "name": "redistodb.deletemax",
+      "type": "java.lang.String",
+      "sourceType": "com.software.util.RedisToDBUtil"
+    },
+    {
+      "name": "redistodb.deletemaxi",
+      "type": "java.lang.Integer",
+      "sourceType": "com.software.util.RedisToDBUtil",
+      "defaultValue": 0
+    },
+    {
+      "name": "redistodb.insertmax",
+      "type": "java.lang.String",
+      "sourceType": "com.software.util.RedisToDBUtil"
+    },
+    {
+      "name": "redistodb.insertmaxi",
+      "type": "java.lang.Integer",
+      "sourceType": "com.software.util.RedisToDBUtil",
+      "defaultValue": 0
+    },
+    {
+      "name": "redistodb.updatemax",
+      "type": "java.lang.String",
+      "sourceType": "com.software.util.RedisToDBUtil"
+    },
+    {
+      "name": "redistodb.updatemaxi",
+      "type": "java.lang.Integer",
+      "sourceType": "com.software.util.RedisToDBUtil",
+      "defaultValue": 0
+    },
+    {
+      "name": "redisutil.expire",
+      "type": "java.lang.String",
+      "sourceType": "com.software.util.RedisUtil"
+    },
+    {
+      "name": "redisutil.expirei",
+      "type": "java.lang.Integer",
+      "sourceType": "com.software.util.RedisUtil",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}
