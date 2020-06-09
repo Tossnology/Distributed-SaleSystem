@@ -20,7 +20,7 @@ import com.software.trans.SendOrder;
 
 @Slf4j
 @RestController
-@RequestMapping("/order")
+@RequestMapping("api/order")
 public class OrderController 
 {
 	@Autowired

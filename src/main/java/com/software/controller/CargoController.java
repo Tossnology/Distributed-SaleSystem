@@ -19,7 +19,7 @@ import com.software.trans.SendCargo2Andr;
 
 @Slf4j
 @RestController
-@RequestMapping("/cargo")
+@RequestMapping("api/cargo")
 public class CargoController 
 {
 	

@@ -8,7 +8,7 @@ defaultProviderSetting = {
     time : ""
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendProviderJsonAjax(url, param) {
     var tempdata;

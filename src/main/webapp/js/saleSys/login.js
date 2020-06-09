@@ -6,12 +6,14 @@
 window.onload = function () {
 }
 
+var serverAddr = "/api";
+
 $("#login-btn").click(
     function () {
         var account = $("#account").val();
         var password = $("#password").val();
         var param;
-        var url = "http://localhost:8080/login/"; //TODO waiturl
+        var url = serverAddr + "/login/"; //TODO waiturl
         var destination = "" //网页跳转
         var type = $('#type').val();
 
@@ -66,8 +68,9 @@ $("#login-btn").click(
         });
         var secondrequest = 
             '{"id":"' + account +'"}';
+        var url = serverAddr + "/login/secondRequest";
         dataajax = $.ajax({
-            url: "http://localhost:8080/login/secondRequest",
+            url: url,
             data: secondrequest,
             async: false,
             type: "post",

@@ -18,7 +18,7 @@ import com.software.trans.WarehoursePerformance;
 
 @Slf4j
 @RestController
-@RequestMapping("/performance")
+@RequestMapping("api/performance")
 public class PerformanceController 
 {
 	@Autowired

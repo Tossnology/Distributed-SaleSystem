@@ -30,7 +30,7 @@ import com.software.trans.ReceiveUser;
 
 @Slf4j
 @RestController
-@RequestMapping("/login")
+@RequestMapping("api/login")
 public class LoginController 
 {
 	@Autowired

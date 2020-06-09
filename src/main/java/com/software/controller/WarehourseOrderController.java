@@ -20,7 +20,7 @@ import com.software.trans.Stock;
 
 @Slf4j
 @RestController
-@RequestMapping("/warehourseOrder")
+@RequestMapping("api/warehourseOrder")
 public class WarehourseOrderController 
 {
 	@Autowired

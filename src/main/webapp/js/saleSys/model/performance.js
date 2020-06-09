@@ -11,7 +11,7 @@ defaultPerformanceSetting = {
     endtime: ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendPerJsonAjax(url, param) {
     var tempdata;

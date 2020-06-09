@@ -18,7 +18,7 @@ var defaultClientSetting =
     pointtoprice : ""
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendClientJsonAjax(url, param) {
     var tempdata;
@@ -117,7 +117,7 @@ function updateClient(client) {
 
 function insertMember(client) {
     param = buildClientParam(client);
-    url="/vip/updateclientinvip";
+    url = serverAddr +"/vip/updateclientinvip";
     console.log("InsertMember : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -125,7 +125,7 @@ function insertMember(client) {
 
 function updateMember(client) {
     param = buildClientParam(client);
-    url="/vip/updateclientinvip";
+    url = serverAddr +"/vip/updateclientinvip";
     console.log("UpdateMember : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -133,7 +133,7 @@ function updateMember(client) {
 
 function queryMember(client) {
     param = buildClientParam(client);
-    url="/vip/query";
+    url = serverAddr +"/vip/query";
     console.log("QueryMember : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);
@@ -141,7 +141,7 @@ function queryMember(client) {
 
 function deleteMember(client) {
     param = buildClientParam(client);
-    url="/vip/cancel";
+    url = serverAddr +"/vip/cancel";
     console.log("DeleteMember : ", param);
     $.ajaxSettings.async = false;
     return sendClientJsonAjax(url, param);

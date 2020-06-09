@@ -11,7 +11,7 @@ defaultShopManagerSetting = {
     label : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendShopManagerJsonAjax(url, param) {
     var tempdata;

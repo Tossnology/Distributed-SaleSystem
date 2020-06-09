@@ -19,7 +19,7 @@ import com.software.topservice.SupplierManagerServiceImp;
 
 @Slf4j
 @RestController
-@RequestMapping("/provider")
+@RequestMapping("api/provider")
 public class SupplierController {
 	
 	@Autowired

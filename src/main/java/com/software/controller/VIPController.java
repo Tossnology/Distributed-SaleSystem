@@ -19,7 +19,7 @@ import com.software.trans.ReceiveClient;
 
 @Slf4j
 @RestController
-@RequestMapping("/vip")
+@RequestMapping("api/vip")
 public class VIPController {
 
 	@Autowired

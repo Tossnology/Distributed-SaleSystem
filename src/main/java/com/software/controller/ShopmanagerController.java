@@ -16,7 +16,7 @@ import com.software.topservice.TopStoreManagerService;
 
 @Slf4j
 @RestController
-@RequestMapping("/shopmanager")
+@RequestMapping("api/shopmanager")
 public class ShopmanagerController 
 {
 	@Autowired

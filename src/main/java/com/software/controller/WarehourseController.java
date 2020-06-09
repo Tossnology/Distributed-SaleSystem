@@ -19,7 +19,7 @@ import com.software.topservice.WarehourseManagerService;
 
 @Slf4j
 @RestController
-@RequestMapping("/warehourse")
+@RequestMapping("api/warehourse")
 public class WarehourseController 
 {
 	@Autowired

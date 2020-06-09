@@ -16,7 +16,7 @@ import com.software.topservice.StaffManagerService;
 
 @Slf4j
 @RestController
-@RequestMapping("/staff")
+@RequestMapping("api/staff")
 public class StaffController {
 	@Autowired
 	private StaffManagerService service;

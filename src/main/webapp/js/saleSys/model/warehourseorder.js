@@ -21,7 +21,7 @@ defaultWareHourseOrderSetting = {
     sumprice : ''
 }
 
-var serverAddr = "http://localhost:8080";
+var serverAddr = "/api";
 
 function sendWOrderJsonAjax(url, param) {
     var tempdata;

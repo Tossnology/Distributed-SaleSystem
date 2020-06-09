@@ -16,7 +16,7 @@ import com.software.trans.ReceiveClient;
 
 @Slf4j
 @RestController
-@RequestMapping("/client")
+@RequestMapping("api/client")
 public class ClientController 
 {
 	
